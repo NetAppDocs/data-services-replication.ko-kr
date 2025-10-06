@@ -1,0 +1,25 @@
+---
+indexpage:
+  title: NetApp 복제 설명서
+  summary: ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간의 백업 및 재해 복구를 지원합니다.
+  keywords: replicate, storage systems, disaster recovery, cloud
+  lead: ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간의 백업 및 재해 복구를 지원합니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: NetApp 복제에 대해 알아보세요
+      url: concept-replication.html
+    - title: 데이터 복제 설정
+      url: task-replicating-data.html
+  - title: NetApp 복제 사용
+    links:
+    - title: 데이터 복제 관리
+      url: task-managing-replication.html
+  - title: 블로그 및 커뮤니티
+    links:
+    - title: NetApp 콘솔
+      url: https://www.netapp.com/console
+    - title: NetApp 데이터 서비스
+      url: https://www.netapp.com/data-services/
+    - title: NetApp 커뮤니티
+      url: https://community.netapp.com

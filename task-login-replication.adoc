@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: task-login-replication.html 
+keywords: copy and sync, NetApp Replication, log in to Replication, NetApp BlueXP, BlueXP Replication, NetApp Console 
+summary: NetApp 콘솔을 사용하여 NetApp Replication에 로그인합니다. 
+---
+= NetApp 복제에 로그인
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp 콘솔을 사용하여 NetApp Replication에 로그인합니다.
+
+콘솔에 로그인하려면 NetApp 지원 사이트 자격 증명을 사용하거나 이메일과 비밀번호를 사용하여 NetApp 클라우드 로그인에 가입할 수 있습니다. https://docs.netapp.com/us-en/bluexp-setup-admin/task-logging-in.html["로그인에 대해 자세히 알아보세요"^] .
+
+.단계
+. 웹 브라우저를 열고 이동하세요 https://console.netapp.com/["NetApp 콘솔"^] .
++
+NetApp 콘솔 로그인 페이지가 나타납니다.
+
+. 콘솔에 로그인합니다.
+. 콘솔 왼쪽 탐색에서 *보호* > *복제*를 선택합니다.
+

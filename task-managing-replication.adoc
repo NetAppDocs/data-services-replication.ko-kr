@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: task-managing-replication.html 
+keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, source, destination, schedule, relationship, break, resync, max transfer, maximum transfer rate, rate, transfer rate, reverse resync, status, replication status, disaster recovery, DR, archive, archiving, retention 
+summary: 두 시스템 간에 데이터 복제를 설정한 후 NetApp Replication에서 데이터 복제 일정과 관계를 관리할 수 있습니다. 
+---
+= NetApp Replication에서 데이터 복제 관리
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+두 시스템 간에 데이터 복제를 설정한 후 NetApp Replication에서 데이터 복제 일정과 관계를 관리할 수 있습니다.
+
+.단계
+. link:task-login-replication.html["NetApp 복제에 로그인"] .
+. 데이터 복제 관계의 상태를 검토하여 정상인지 확인합니다.
++
+
+NOTE: 관계 상태가 유휴이고 미러 상태가 초기화되지 않은 경우, 정의된 일정에 따라 데이터 복제가 발생하도록 대상 시스템에서 관계를 초기화해야 합니다.  시스템 관리자나 명령줄 인터페이스(CLI)를 사용하여 관계를 초기화할 수 있습니다.  이러한 상태는 대상 시스템에 장애가 발생한 후 다시 온라인 상태가 될 때 나타날 수 있습니다.
+
+. 볼륨 관계에 대한 작업 메뉴를 선택하고 사용 가능한 작업 중 하나를 선택합니다.
++
+다음 표에서는 사용 가능한 작업을 설명합니다.
+
++
+[cols="15,85"]
+|===
+| 행동 | 설명 
+
+
+| 정보 | 볼륨 관계에 대한 세부 정보를 표시합니다. 전송 정보, 마지막 전송 정보, 볼륨에 대한 세부 정보, 관계에 할당된 보호 정책에 대한 정보 등이 표시됩니다. 
+
+
+| 부서지다 | 소스 볼륨과 대상 볼륨 간의 관계를 끊고 데이터 액세스를 위해 대상 볼륨을 활성화합니다. 이 옵션은 일반적으로 데이터 손상, 실수로 삭제 또는 오프라인 상태와 같은 이벤트로 인해 소스 볼륨이 데이터를 제공할 수 없을 때 사용됩니다.https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["ONTAP 설명서에서 데이터 액세스를 위한 대상 볼륨을 구성하고 소스 볼륨을 다시 활성화하는 방법을 알아보세요."^] 
+
+
+| 재동기화  a| 
+볼륨 간의 끊어진 관계를 재설정하고 정의된 일정에 따라 데이터 복제를 재개합니다.
+
+
+NOTE: 볼륨을 다시 동기화하면 대상 볼륨의 내용이 소스 볼륨의 내용으로 덮어쓰여집니다.
+
+대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화 수행 방법을 알아보려면 다음으로 이동하세요. https://docs.netapp.com/us-en/ontap-sm-classic/volume-disaster-recovery/index.html["ONTAP 문서"^] .
+
+
+
+| 역방향 재동기화 | 소스 볼륨과 대상 볼륨의 역할을 바꿉니다. 원본 볼륨의 내용은 대상 볼륨의 내용으로 덮어쓰여집니다. 이 기능은 오프라인 상태가 된 소스 볼륨을 다시 활성화할 때 유용합니다. 마지막 데이터 복제와 소스 볼륨이 비활성화된 시간 사이에 원본 소스 볼륨에 기록된 모든 데이터는 보존되지 않습니다. 
+
+
+| 일정 편집 | 데이터 복제에 대한 다른 일정을 선택할 수 있습니다. 
+
+
+| 최대 전송 속도 편집 | 데이터를 전송할 수 있는 최대 속도(초당 킬로바이트)를 편집할 수 있습니다. 
+
+
+| 업데이트 | 대상 볼륨을 업데이트하기 위해 증분 전송을 시작합니다. 
+
+
+| 삭제 | 소스 볼륨과 대상 볼륨 간의 데이터 보호 관계를 삭제합니다. 즉, 볼륨 간에 데이터 복제가 더 이상 발생하지 않습니다. 이 작업은 데이터 액세스를 위한 대상 볼륨을 활성화하지 않습니다. 
+|===
+
+
+.결과
+작업을 선택하면 NetApp Replication이 관계 또는 일정을 업데이트합니다.

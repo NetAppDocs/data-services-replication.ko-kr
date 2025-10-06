@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: concept-replication.html 
+keywords: ontap, cluster, discover, manage, BlueXP, bluexp,hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, disaster recovery, DR, archive, archiving, retention, netapp replication 
+summary: NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므로 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 얻을 수 있습니다.  NetApp 스토리지 시스템에 데이터를 복제하고 보조 데이터를 지속적으로 업데이트하면 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있습니다. 외부 복제 서버가 필요하지 않습니다. 
+---
+= NetApp 복제에 대해 알아보세요
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므로 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 얻을 수 있습니다.  NetApp Replication을 사용하여 NetApp 스토리지 시스템에 데이터를 복제하고 보조 데이터를 지속적으로 업데이트하면 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있습니다. 외부 복제 서버가 필요하지 않습니다.
+
+
+
+== NetApp 콘솔
+
+NetApp 복제는 NetApp 콘솔을 통해 액세스할 수 있습니다.
+
+NetApp 콘솔은 엔터프라이즈급 온프레미스 및 클라우드 환경 전반에서 NetApp 스토리지 및 데이터 서비스를 중앙에서 관리할 수 있는 기능을 제공합니다. NetApp 데이터 서비스에 액세스하고 사용하려면 콘솔이 필요합니다. 관리 인터페이스로서, 하나의 인터페이스에서 여러 스토리지 리소스를 관리할 수 있습니다. 콘솔 관리자는 기업 내 모든 시스템의 저장소와 서비스에 대한 액세스를 제어할 수 있습니다.
+
+NetApp Console을 사용하려면 라이선스나 구독이 필요하지 않으며, 스토리지 시스템이나 NetApp 데이터 서비스에 대한 연결을 보장하기 위해 클라우드에 Console 에이전트를 배포해야 할 때만 요금이 부과됩니다. 그러나 콘솔에서 액세스할 수 있는 일부 NetApp 데이터 서비스는 라이선스 기반이거나 구독 기반입니다.
+
+자세히 알아보세요 https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp 콘솔"] .
+
+
+
+== 특징
+
+* ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간의 백업 및 재해 복구를 지원합니다.
+* 높은 가용성으로 DR 환경의 안정성을 확보하세요.
+* ONTAP 스토리지 간의 효율적인 블록 수준 복제는 빠르고 효율적이며, DR과 백업 모두에 대한 세분화된 복구 지점을 제공합니다.
+
+
+
+
+== 비용
+
+NetApp NetApp Replication 사용에 대해 요금을 청구하지 않지만, 적용되는 데이터 유입 및 유출 요금에 대해서는 클라우드 공급자를 확인해야 합니다.
+
+
+
+== 지원되는 시스템
+
+NetApp 복제를 사용하면 다음 유형의 시스템 간에 데이터를 복제할 수 있습니다.
+
+[cols="30,30"]
+|===
+| 소스 시스템 | 지원되는 대상 시스템 
+
+
+| Cloud Volumes ONTAP  a| 
+* ONTAP 용 Amazon FSx
+* Cloud Volumes ONTAP
+* 온프레미스 ONTAP 클러스터
+
+
+
+
+| 온프레미스 ONTAP 클러스터  a| 
+* ONTAP 용 Amazon FSx
+* Cloud Volumes ONTAP
+* 온프레미스 ONTAP 클러스터
+
+
+
+
+| ONTAP 용 Amazon FSx  a| 
+* ONTAP 용 Amazon FSx
+* Cloud Volumes ONTAP
+* 온프레미스 ONTAP 클러스터
+
+
+|===
+
+
+== 데이터 복제 작동 방식
+
+NetApp Replication은 SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간 데이터 복제를 간소화합니다.  소스 볼륨과 대상 볼륨을 식별한 다음 복제 정책과 일정을 선택하기만 하면 됩니다.
+
+Cloud Volumes ONTAP 의 경우 NetApp Replication은 필요한 디스크를 구매하고, 관계를 구성하고, 복제 정책을 적용한 다음 볼륨 간에 기준 전송을 시작합니다.
+
+
+NOTE: 기준선 전송에는 소스 데이터의 전체 사본이 포함됩니다.  이후 전송에는 소스 데이터의 차등 사본이 포함됩니다.
+
+
+
+== 지원되는 데이터 보호 구성
+
+NetApp 복제는 단순, 팬아웃, 계단식 데이터 보호 구성을 지원합니다.
+
+* 간단한 구성에서는 볼륨 A에서 볼륨 B로 복제가 발생합니다.
+* 팬아웃 구성에서는 볼륨 A에서 여러 대상으로 복제가 발생합니다.
+* 계단식 구성에서는 볼륨 A에서 볼륨 B로, 볼륨 B에서 볼륨 C로 복제가 발생합니다.
+
+
+
+
+== NetApp 백업 및 복구를 사용하여 데이터 복제
+
+NetApp 콘솔 에이전트 3.9.31 릴리스부터 NetApp Backup and Recovery를 사용하면 SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간에 데이터를 복제할 수 있습니다.  따라서 다른 ONTAP 시스템에 데이터를 복제하고 동일한 데이터의 백업을 개체 스토리지에 생성하려는 경우 다음을 사용할 수 있습니다. https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html["NetApp 백업 및 복구"^] 단일 서비스로 데이터 보호 요구 사항을 관리할 수 있습니다.
+
+현재 다음 기능은 NetApp 복제에서만 지원되며 NetApp 백업 및 복구의 복제 기능을 사용하는 경우에는 지원되지 않습니다.
+
+* 볼륨 A에서 볼륨 B로, 그리고 볼륨 B에서 볼륨 C로 복제가 발생하는 계단식 구성은 지원되지 않습니다.
+* FSx for ONTAP 시스템에서 데이터를 복제하거나 FSx for ONTAP 시스템에서 데이터를 복제하는 기능은 지원되지 않습니다.
+* 볼륨의 일회성 복제를 생성하는 기능은 지원되지 않습니다.
+
+
+따라서 이러한 기능이 필요한 경우 NetApp Replication을 사용하세요.

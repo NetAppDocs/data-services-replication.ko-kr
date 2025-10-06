@@ -1,0 +1,45 @@
+---
+settings:
+  name: NetApp Replication
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  rss_page: whats-new.html
+  langs: ko-kr,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: NetApp 복제 문서
+    url: "/index.html"
+  - title: 릴리스 노트
+    entries:
+    - title: 새로운 소식
+      url: "/whats-new.html"
+  - title: 시작하기
+    entries:
+    - title: NetApp 복제에 대해 알아보세요
+      url: "/concept-replication.html"
+    - title: NetApp 복제에 로그인
+      url: "/task-login-replication.html"
+    - title: 데이터 복제 설정
+      url: "/task-replicating-data.html"
+  - title: 데이터 복제 관리
+    url: "/task-managing-replication.html"
+  - title: 자세히 알아보기
+    entries:
+    - title: 복제 정책에 대해 알아보세요
+      url: "/concept-replication-policies.html"
+    - title: 백업 정책에 대해 알아보세요
+      url: "/concept-backup-policies.html"
+  - title: 지식과 지원
+    entries:
+    - title: 지원 등록
+      url: "/task-support-registration.html"
+    - title: 도움을 받으세요
+      url: "/task-get-help.html"
+  - title: 법적 고지 사항
+    url: "/legal-notices.html"
+product-family:
+  name: NetApp Data Services
+  repo: data-services-family
