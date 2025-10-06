@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: concept-replication-policies.html 
 keywords: replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, disaster recovery, DR 
-summary: NetApp 콘솔에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다. 
+summary: NetApp Console 에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다. 
 ---
-= NetApp 복제에서 사용되는 복제 정책에 대해 알아보세요.
+= NetApp Replication 에서 사용되는 복제 정책에 대해 알아보세요.
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NetApp 콘솔에서 데이터 복제를 설정할 때 복제 정책을 
 
 
 [role="lead"]
-NetApp Replication에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다.
+NetApp Replication 에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다.
 
 
 

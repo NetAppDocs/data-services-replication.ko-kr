@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="6c88f9e17d9019e00177d64f9db55d2e" category="doc">Amazon FSx for ONTAP 지원</block>
+  <block id="59dfc17500b1e0b8d1824eb8b1413080" category="paragraph">이제 Cloud Volumes ONTAP 시스템이나 온프레미스 ONTAP 클러스터에서 Amazon FSx for ONTAP 파일 시스템으로 데이터를 복제할 수 있습니다.</block>
+  <block id="40f78d193b858589ad7df4dd4ce61ad6" category="inline-link">데이터 복제를 설정하는 방법을 알아보세요</block>
+  <block id="51959da1122b405c90c18be52282f18f" category="paragraph"><block ref="1bc1e485e9f9d41e344f0d10f6ad3511" category="inline-link-rx"></block> .</block>
+  <block id="b42dff6de52c55fe0d6831817d6b309d" category="doc">데이터 소스로 ONTAP 용 FSx</block>
+  <block id="0f8ffeac5211fc4e0dfb43c430753ef2" category="paragraph">이제 Amazon FSx for ONTAP 파일 시스템에서 다음 대상으로 데이터를 복제할 수 있습니다.</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="list-text">ONTAP 용 Amazon FSx</block>
+  <block id="0ef90fde5440e5fbd859cb4d59f76f2c" category="list-text">온프레미스 ONTAP 클러스터</block>
+  <block id="168c5915eb40be2beb0ac04f286489ba" category="doc">ONTAP 용 FSx에서 Cloud Volumes ONTAP 으로</block>
+  <block id="6aa89747141f6b258796889b4e964d01" category="paragraph">이제 Amazon FSx for ONTAP 파일 시스템에서 Cloud Volumes ONTAP 으로 데이터를 복제할 수 있습니다.</block>
+  <block id="747ef7cb70bddb84c8ef27217b868e12" category="doc">BlueXP replication 이제 NetApp Replication 입니다.</block>
+  <block id="57ff97c571d4da9035b6687a3eb97fea" category="paragraph">BlueXP replication 이름이 NetApp Replication 로 변경되었습니다.</block>
+  <block id="bc2fe31b1e2682a9a79513d792e9c721" category="section-title">BlueXP 는 이제 NetApp Console 입니다.</block>
+  <block id="995c8f79a8e07fbd8d519e45d03d6004" category="paragraph">강화되고 재구성된 BlueXP 기반을 기반으로 구축된 NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경에서 NetApp 스토리지와 NetApp Data Services 중앙에서 관리하여 실시간 통찰력, 더 빠른 워크플로, 간소화된 관리를 제공하며, 높은 보안성과 규정 준수를 보장합니다.</block>
+  <block id="2ef9d641d45afe99b74ad6f9a9f797ad" category="inline-link-macro">NetApp Console 릴리스 노트</block>
+  <block id="07a0717927710f1dcb5683cb20238dcb" category="paragraph">변경된 내용에 대한 자세한 내용은 다음을 참조하세요.<block ref="a3987562479f1a66db4eec298b79e00c" category="inline-link-macro-rx"></block> .</block>
+  <block id="9b93e4b231bbb8d1c7051b84c23381d9" category="summary">미러 정책과 달리 백업 SnapVault 정책은 특정 스냅샷 복사본을 대상 볼륨에 복제합니다.  기본 정책 대신 사용자 고유의 정책을 사용하려면 백업 정책이 어떻게 작동하는지 이해하는 것이 중요합니다.</block>
+  <block id="13214bc1cee198bcd45ff3058afbe997" category="doc">NetApp Replication 에서 사용되는 백업 정책에 대해 알아보세요.</block>
+  <block id="d82a2dd63636d76c4ac7235ef9945089" category="paragraph">미러 정책과 달리 백업(SnapVault) 정책은 NetApp Replication 사용하여 특정 스냅샷 복사본을 대상 볼륨에 복제합니다.  기본 정책 대신 사용자 고유의 정책을 사용하려면 백업 정책이 어떻게 작동하는지 이해하는 것이 중요합니다.</block>
+  <block id="6df849e9b6a98751ab24134d77f38e40" category="section-title">스냅샷 복사 레이블과 백업 정책 간의 관계 이해</block>
+  <block id="39254c75b5bfbd2872343b33d19fae8b" category="paragraph">스냅샷 정책은 시스템이 볼륨의 스냅샷 복사본을 생성하는 방법을 정의합니다.  정책은 스냅샷 복사본을 언제 생성할지, 얼마나 많은 복사본을 보관할지, 어떻게 레이블을 지정할지 지정합니다.  예를 들어, 시스템은 매일 오전 12시 10분에 스냅샷 복사본 하나를 만들고, 가장 최근 복사본 두 개를 보관하고, 이를 "매일"이라고 레이블을 붙일 수 있습니다.</block>
+  <block id="2204cd649631fa42bda6fe0400aa1cd0" category="paragraph">백업 정책에는 대상 볼륨에 복제할 레이블이 지정된 스냅샷 복사본과 보관할 복사본 수를 지정하는 규칙이 포함되어 있습니다.  백업 정책에 정의된 레이블은 스냅샷 정책에 정의된 하나 이상의 레이블과 일치해야 합니다.  그렇지 않으면 시스템은 스냅샷 복사본을 복제할 수 없습니다.</block>
+  <block id="5bc7c9de27975c17950e7fb086105c6b" category="paragraph">예를 들어, "매일" 및 "매주"라는 레이블을 포함하는 백업 정책은 해당 레이블만 포함하는 스냅샷 복사본의 복제를 초래합니다.  다음 이미지에 표시된 것처럼 다른 스냅샷 복사본은 복제되지 않습니다.</block>
+  <block id="083c26181de8b3b647fa5365a515a238" category="inline-image-macro">이 그림은 스냅샷 정책, 소스 볼륨, 스냅샷 정책에서 생성된 스냅샷 복사본, 그리고 "매일" 및 "매주" 레이블이 있는 스냅샷 복사본 복제를 지정하는 백업 정책을 기반으로 해당 스냅샷 복사본을 대상 볼륨으로 복제하는 과정을 보여줍니다.</block>
+  <block id="b31733bfcf9651bc6c623260dc3572d3" category="paragraph"><block ref="b31733bfcf9651bc6c623260dc3572d3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="078de5bc4b102703fbb5d5f16eab4ac5" category="section-title">기본 정책 및 사용자 지정 정책</block>
+  <block id="794c2bacad35583b2cc20bd0556629ce" category="paragraph">기본 스냅샷 정책은 매시간, 매일, 매주 스냅샷 복사본을 생성하고, 매시간 6개, 매일 2개, 매주 2개의 스냅샷 복사본을 보관합니다.</block>
+  <block id="a4d82668b58d9042d53ccaa4ade08011" category="paragraph">기본 스냅샷 정책과 함께 기본 백업 정책을 쉽게 사용할 수 있습니다.  기본 백업 정책은 일일 및 주간 스냅샷 복사본을 복제하여 일일 7개와 주간 52개의 스냅샷 복사본을 보관합니다.</block>
+  <block id="148658bf400475bd13a5edab6c870d2f" category="paragraph">사용자 지정 정책을 만드는 경우 해당 정책에 정의된 레이블이 일치해야 합니다.  시스템 관리자를 사용하여 사용자 정의 정책을 만들 수 있습니다.</block>
+  <block id="4661e30f7eaa147cc461a5dc6e8c5f87" category="summary">NetApp Console 에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다.</block>
+  <block id="423248a990a1bbd53517291dce77b295" category="doc">NetApp Replication 에서 사용되는 복제 정책에 대해 알아보세요.</block>
+  <block id="f3f0bfc0e18f563b5f1cc621d29e15a0" category="paragraph">NetApp Replication 에서 데이터 복제를 설정할 때 복제 정책을 선택하는 데 도움이 필요할 수 있습니다.  복제 정책은 스토리지 시스템이 소스 볼륨에서 대상 볼륨으로 데이터를 복제하는 방법을 정의합니다.</block>
+  <block id="e40495076bb4b5e4783f1d1ee0ad0a16" category="section-title">복제 정책은 무엇을 하나요?</block>
+  <block id="f17a16032f2a1e2cbfd643eca94cc227" category="paragraph">ONTAP 운영 체제는 스냅샷 복사본이라고 하는 백업을 자동으로 생성합니다.  스냅샷 복사본은 특정 시점의 파일 시스템 상태를 캡처한 볼륨의 읽기 전용 이미지입니다.</block>
+  <block id="63ac51a49d2ff385f2b7476ca8ed006d" category="paragraph">시스템 간에 데이터를 복제하면 소스 볼륨에서 대상 볼륨으로 스냅샷 복사본이 복제됩니다.  복제 정책은 소스 볼륨에서 대상 볼륨으로 어떤 스냅샷 복사본을 복제할지 지정합니다.</block>
+  <block id="85fff253f12e639aac3437b2c24d5139" category="admonition">복제 정책은 재해 복구 보호와 디스크 간 백업 및 복구를 제공하는 SnapMirror 및 SnapVault 기술을 기반으로 하므로 _보호_ 정책이라고도 합니다.</block>
+  <block id="bb372425f15e8836c2329c9522d23e0d" category="paragraph">다음 이미지는 스냅샷 복사본과 복제 정책 간의 관계를 보여줍니다.</block>
+  <block id="e0ac84556326fcf07bd4ae89b2d8798d" category="inline-image-macro">이 그림은 소스 볼륨의 스냅샷 복사본과 소스 볼륨에서 대상 볼륨으로 모든 스냅샷 복사본 또는 특정 스냅샷 복사본을 복제하는 것을 지정하는 복제 정책을 보여줍니다.</block>
+  <block id="02151274ad2d15ca818ebb7d3c7a9741" category="paragraph"><block ref="02151274ad2d15ca818ebb7d3c7a9741" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0f237b0feffecdddaf6649c2d6d7809a" category="section-title">복제 정책 유형</block>
+  <block id="ef8a1d695c35e57928d4b85c35185a8a" category="paragraph">복제 정책에는 세 가지 유형이 있습니다.</block>
+  <block id="7eb82ee86b53640b74d2920076e847cd" category="list-text">_미러_ 정책은 새로 생성된 스냅샷 복사본을 대상 볼륨에 복제합니다.</block>
+  <block id="e780f422437735e5df21f41220f74a0a" category="paragraph">이러한 스냅샷 복사본을 사용하면 재해 복구나 일회성 데이터 복제를 대비해 소스 볼륨을 보호할 수 있습니다.  언제든지 데이터 액세스를 위해 대상 볼륨을 활성화할 수 있습니다.</block>
+  <block id="3231c0ac719fb899c8910953b798638f" category="list-text">_백업_ 정책은 특정 스냅샷 복사본을 대상 볼륨에 복제하고 일반적으로 소스 볼륨보다 더 오랜 기간 동안 보관합니다.</block>
+  <block id="ba2e5673981bb27a056ef05366f490cf" category="paragraph">데이터가 손상되거나 손실된 경우 이러한 스냅샷 사본에서 데이터를 복원하고 표준 준수 및 기타 거버넌스 관련 목적으로 보관할 수 있습니다.</block>
+  <block id="264d1d85979e565f376768c29ac5980a" category="list-text">_미러 및 백업_ 정책은 재해 복구와 장기 보존을 모두 제공합니다.</block>
+  <block id="c5e319c770118f998f576ebb9b10069b" category="paragraph">각 시스템에는 기본 미러링 및 백업 정책이 포함되어 있어 다양한 상황에 효과적으로 활용할 수 있습니다.  사용자 정의 정책이 필요하다고 생각되면 시스템 관리자를 사용하여 정책을 직접 만들 수 있습니다.</block>
+  <block id="776e818527a0aba48ff11fb3a6a26e3a" category="paragraph">다음 이미지는 미러 정책과 백업 정책의 차이점을 보여줍니다.  미러 정책은 소스 볼륨에서 사용 가능한 스냅샷 복사본을 미러링합니다.</block>
+  <block id="78c3d78f2d488203e854f7d2c1e8433b" category="inline-image-macro">이 그림은 소스 볼륨과 소스 볼륨을 미러링하는 미러 대상 볼륨의 스냅샷 복사본을 보여줍니다.</block>
+  <block id="5f5b8dbd7933654721c89d277e8bc025" category="paragraph"><block ref="5f5b8dbd7933654721c89d277e8bc025" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="37ed5bf13e434da8d711618e2c378619" category="paragraph">백업 정책은 일반적으로 소스 볼륨에 보관되는 기간보다 스냅샷 복사본을 더 오랫동안 보관합니다.</block>
+  <block id="aeed39df6fe9cac3645e90f6149dff93" category="inline-image-macro">이 그림은 SnapVault 장기 보존을 위해 스냅샷 복사본을 보관하기 때문에 더 많은 스냅샷 복사본이 포함된 소스 볼륨과 백업 대상 볼륨의 스냅샷 복사본을 보여줍니다.</block>
+  <block id="e1d008e588d17add4fa05abba6ed4190" category="paragraph"><block ref="e1d008e588d17add4fa05abba6ed4190" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="aeeec0576922eb4490b5fabadc6c4e36" category="summary">NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므로 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 얻을 수 있습니다.  NetApp 스토리지 시스템에 데이터를 복제하고 보조 데이터를 지속적으로 업데이트하면 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있습니다. 외부 복제 서버가 필요하지 않습니다.</block>
+  <block id="5ed06c1d3c0764768c56fa420d696188" category="doc">NetApp Replication 에 대해 알아보세요</block>
+  <block id="85efdfd389ac173deb467cd0ea30bdbf" category="paragraph">NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므로 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 얻을 수 있습니다.  NetApp Replication 사용하여 NetApp 스토리지 시스템에 데이터를 복제하고 보조 데이터를 지속적으로 업데이트하면 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있습니다. 외부 복제 서버가 필요하지 않습니다.</block>
+  <block id="3c031b939f6ec312ee601d021e7a6644" category="section-title">NetApp Console</block>
+  <block id="84082264837e9806d736236151badff0" category="paragraph">NetApp Replication NetApp Console 통해 액세스할 수 있습니다.</block>
+  <block id="0a0979a6d279475a420ea5c279943daa" category="paragraph">NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경 전반에서 NetApp 스토리지 및 데이터 서비스를 중앙에서 관리할 수 있는 기능을 제공합니다. NetApp 데이터 서비스에 액세스하고 사용하려면 콘솔이 필요합니다. 관리 인터페이스로서, 하나의 인터페이스에서 여러 스토리지 리소스를 관리할 수 있습니다. 콘솔 관리자는 기업 내 모든 시스템의 저장소와 서비스에 대한 액세스를 제어할 수 있습니다.</block>
+  <block id="7118a6b22768dabe4720d84710ea1e43" category="paragraph">NetApp Console 사용하려면 라이선스나 구독이 필요하지 않으며, 스토리지 시스템이나 NetApp 데이터 서비스에 대한 연결을 보장하기 위해 클라우드에 Console 에이전트를 배포해야 할 때만 요금이 부과됩니다. 그러나 콘솔에서 액세스할 수 있는 일부 NetApp 데이터 서비스는 라이선스 기반이거나 구독 기반입니다.</block>
+  <block id="4d0bb76e32bfe205406b10f5dfa9d47b" category="paragraph">자세히 알아보세요<block ref="e6368f2dd82be1e975475a1098863578" category="inline-link-rx"></block> .</block>
+  <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">특징</block>
+  <block id="4d8208136280cbaba3cab05e5996a3a8" category="list-text">ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간의 백업 및 재해 복구를 지원합니다.</block>
+  <block id="58598c037819ab3e58b8ee6d0d634246" category="list-text">높은 가용성으로 DR 환경의 안정성을 확보하세요.</block>
+  <block id="6c12db213eb53a8ef7d470254e0395be" category="list-text">ONTAP 스토리지 간의 효율적인 블록 수준 복제는 빠르고 효율적이며, DR과 백업 모두에 대한 세분화된 복구 지점을 제공합니다.</block>
+  <block id="20b4f77bd00b4f63a49ec8e08f3bf6a6" category="section-title">비용</block>
+  <block id="688db5110be6c3b4687f322f866e3966" category="paragraph">NetApp NetApp Replication 사용에 대해 요금을 청구하지 않지만, 적용되는 데이터 유입 및 유출 요금에 대해서는 클라우드 공급자를 확인해야 합니다.</block>
+  <block id="933247e0be7796a309cfa4c95bd34938" category="section-title">지원되는 시스템</block>
+  <block id="5029d168fd8eaac94e5fb1b86a3c006c" category="paragraph">NetApp Replication 사용하면 다음 유형의 시스템 간에 데이터를 복제할 수 있습니다.</block>
+  <block id="48a431e7da72cf4ddb716b44e3bd3022" category="cell">소스 시스템</block>
+  <block id="ed82c965d60c0d74a85f7a3ee3c8b83c" category="cell">지원되는 대상 시스템</block>
+  <block id="117bdbda976fe8b3212bc3b6327a0a1b" category="cell">Cloud Volumes ONTAP</block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
+  <block id="c17ce6a7cdcb97581c6d5603ec7d447a" category="list-text">온프레미스 ONTAP 클러스터</block>
+  <block id="b553c40a28c07760917a84d00649f7fd" category="section-title">데이터 복제 작동 방식</block>
+  <block id="ab48329b04181ea1425540e3a6fe3fe5" category="paragraph">NetApp Replication SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간 데이터 복제를 간소화합니다.  소스 볼륨과 대상 볼륨을 식별한 다음 복제 정책과 일정을 선택하기만 하면 됩니다.</block>
+  <block id="0a6e3d7b708a2efcacdf12db0f7ef453" category="paragraph">Cloud Volumes ONTAP 의 경우 NetApp Replication 필요한 디스크를 구매하고, 관계를 구성하고, 복제 정책을 적용한 다음 볼륨 간에 기준 전송을 시작합니다.</block>
+  <block id="f2c34e95577ee850c803e71a908cf1ef" category="admonition">기준선 전송에는 소스 데이터의 전체 사본이 포함됩니다.  이후 전송에는 소스 데이터의 차등 사본이 포함됩니다.</block>
+  <block id="cc20b848be9552c96e9f46ed40db533d" category="section-title">지원되는 데이터 보호 구성</block>
+  <block id="76f60c2fc54480021bad1172edc8cfc9" category="paragraph">NetApp Replication 단순, 팬아웃, 계단식 데이터 보호 구성을 지원합니다.</block>
+  <block id="c1400343880c81f40f5a3faf804c86ae" category="list-text">간단한 구성에서는 볼륨 A에서 볼륨 B로 복제가 발생합니다.</block>
+  <block id="efec681cbb459f433d2291a71e215461" category="list-text">팬아웃 구성에서는 볼륨 A에서 여러 대상으로 복제가 발생합니다.</block>
+  <block id="7a850141034065e0218996db71a2ef0c" category="list-text">계단식 구성에서는 볼륨 A에서 볼륨 B로, 볼륨 B에서 볼륨 C로 복제가 발생합니다.</block>
+  <block id="e2a73062a43d971014e79321452e41d1" category="section-title">NetApp Backup and Recovery 사용하여 데이터 복제</block>
+  <block id="cc6088539286339733631d73fb51774b" category="inline-link">NetApp Backup and Recovery</block>
+  <block id="465534c15eafa57d6bae7e725a2e3ce2" category="paragraph">NetApp Console 에이전트 3.9.31 릴리스부터 NetApp Backup and Recovery 사용하면 SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간에 데이터를 복제할 수 있습니다.  따라서 다른 ONTAP 시스템에 데이터를 복제하고 동일한 데이터의 백업을 개체 스토리지에 생성하려는 경우 다음을 사용할 수 있습니다.<block ref="67fd3aacb3a6ea01de53a75df4c80aa9" category="inline-link-rx"></block> 단일 서비스로 데이터 보호 요구 사항을 관리할 수 있습니다.</block>
+  <block id="4731c16d17a906073fd315deea647210" category="paragraph">현재 다음 기능은 NetApp Replication 에서만 지원되며 NetApp Backup and Recovery 의 복제 기능을 사용하는 경우에는 지원되지 않습니다.</block>
+  <block id="e012112c73378e2a2d1fd1a0fa9c2795" category="list-text">볼륨 A에서 볼륨 B로, 그리고 볼륨 B에서 볼륨 C로 복제가 발생하는 계단식 구성은 지원되지 않습니다.</block>
+  <block id="baf48e0aa2c3928a76f5ae4cfa863af0" category="list-text">FSx for ONTAP 시스템에서 데이터를 복제하거나 FSx for ONTAP 시스템에서 데이터를 복제하는 기능은 지원되지 않습니다.</block>
+  <block id="0c23616cc33d59b54422397ae3ade277" category="list-text">볼륨의 일회성 복제를 생성하는 기능은 지원되지 않습니다.</block>
+  <block id="bec0d307733399aa2dead652fbdca123" category="paragraph">따라서 이러한 기능이 필요한 경우 NetApp Replication 사용하세요.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">법적 고지 사항</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">법적 고지사항은 저작권 표시, 상표, 특허 등에 대한 정보를 제공합니다.</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">저작권</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">상표</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, NETAPP 로고 및 NetApp 상표 페이지에 나열된 마크는 NetApp, Inc.의 상표입니다. 다른 회사 및 제품 이름은 해당 소유자의 상표일 수 있습니다.</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">특허</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">NetApp 이 소유한 현재 특허 목록은 다음에서 확인할 수 있습니다.</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">개인정보 보호정책</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">오픈소스</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">공지 파일은 NetApp 소프트웨어에서 사용되는 타사 저작권 및 라이선스에 대한 정보를 제공합니다.</block>
+  <block id="50dbf63cd0ab8144a287e5cd6a0f1de2" category="inline-link">NetApp Console 에 대한 알림</block>
+  <block id="ca1067b0f577a19a222d6d22081d1d4b" category="paragraph"><block ref="ca1067b0f577a19a222d6d22081d1d4b" category="inline-link-rx"></block></block>
+  <block id="e48486c33f71dc8e173adb6c6fc66485" category="summary">NetApp 다양한 방법으로 NetApp Console 에 대한 지원을 제공합니다. 지식 기반(KB) 문서와 커뮤니티 포럼 등 광범위한 무료 셀프 지원 옵션을 연중무휴 24시간 이용할 수 있습니다. 지원 등록 시 웹 티켓팅을 통한 원격 기술 지원이 제공됩니다.</block>
+  <block id="fabfc25ef8996fd90836e58a4c0b26b6" category="doc">도움을 받으세요</block>
+  <block id="bbbc9b55f08bfe80f146b5207bdb7728" category="paragraph">NetApp BlueXP 와 클라우드 서비스에 대한 다양한 지원을 제공합니다. 지식 베이스(KB) 문서 및 커뮤니티 포럼 등 다양한 무료 셀프 지원 옵션을 연중무휴 24시간 이용하실 수 있습니다. 지원 등록 시 웹 티켓팅을 통한 원격 기술 지원이 제공됩니다.</block>
+  <block id="522cbb900314aeb84eb5a961c5f94672" category="section-title">클라우드 공급자 파일 서비스에 대한 지원을 받으세요</block>
+  <block id="f6185bb12f5e53c800be8cda7fbca65b" category="paragraph">클라우드 공급자 파일 서비스, 해당 인프라 또는 서비스를 사용하는 솔루션과 관련된 기술 지원에 대해서는 해당 제품의 BlueXP 설명서에서 "도움말 받기"를 참조하세요.</block>
+  <block id="9d06990508d25d367d9158c6558eb9c8" category="list-text"><block ref="9d06990508d25d367d9158c6558eb9c8" category="inline-link-macro-rx"></block></block>
+  <block id="7450cfde7058dc5e1f7909d0280fd7ae" category="inline-link-macro">Azure NetApp Files</block>
+  <block id="2e0c742f4616eb27b5b7646aa790edfe" category="list-text"><block ref="2e0c742f4616eb27b5b7646aa790edfe" category="inline-link-macro-rx"></block></block>
+  <block id="1215f8190533dfdf63d2224a6d88266f" category="inline-link-macro">Google Cloud NetApp Volumes</block>
+  <block id="cb4bf32603c89d08cad17e7e7dd302f2" category="list-text"><block ref="cb4bf32603c89d08cad17e7e7dd302f2" category="inline-link-macro-rx"></block></block>
+  <block id="3880ae5df9fdc4d0fc4a6d00a2239530" category="paragraph">BlueXP 와 해당 스토리지 솔루션 및 서비스에 대한 구체적인 기술 지원을 받으려면 아래에 설명된 지원 옵션을 이용하세요.</block>
+  <block id="edd15fbeb7b2dffa163336ecd4f3e80c" category="section-title">셀프 지원 옵션 사용</block>
+  <block id="5e4b821a1a82558dead1ef6961e90666" category="paragraph">다음 옵션은 주 7일, 하루 24시간 무료로 이용 가능합니다.</block>
+  <block id="5b6cf869265c13af8566f192b4ab3d2a" category="list-text">설명서</block>
+  <block id="a4a6c2ea0078252eac2d74ef3e6c917c" category="paragraph">현재 보고 있는 BlueXP 문서입니다.</block>
+  <block id="19111351b69b6b15668130b38b7f6038" category="inline-link">지식 기반</block>
+  <block id="942c9249796cf6b78c981ebf15195809" category="list-text"><block ref="942c9249796cf6b78c981ebf15195809" category="inline-link-rx"></block></block>
+  <block id="9a3db1abe5491d0eb9bb5d125981356c" category="paragraph">BlueXP 지식 기반을 검색하여 문제 해결에 도움이 되는 문서를 찾아보세요.</block>
+  <block id="14526abd8bda5af347775025cd5342cf" category="inline-link">커뮤니티</block>
+  <block id="410fdb9caa9c64da2ff3f88f4836960d" category="list-text"><block ref="410fdb9caa9c64da2ff3f88f4836960d" category="inline-link-rx"></block></block>
+  <block id="00c5fef3bb9d593ae96bf5d2ee60354a" category="paragraph">현재 진행 중인 토론을 팔로우하거나 새로운 토론을 만들려면 BlueXP 커뮤니티에 가입하세요.</block>
+  <block id="d88bacf2a9fdcbbc844edcba97c34e30" category="section-title">NetApp 지원을 통해 사례 만들기</block>
+  <block id="82812db645b6ff5e9c2a24ddfb66c8d6" category="paragraph">위에 나열된 셀프 지원 옵션 외에도, 지원을 활성화한 후 NetApp 지원 전문가와 협력하여 문제를 해결할 수 있습니다.</block>
+  <block id="8fece025a1a8fef7018449bf104a2527" category="list-title">시작하기 전에</block>
+  <block id="920fe1428c19533eda6222fe7e58efbe" category="inline-link">BlueXP 로그인과 관련된 자격 증명을 관리하는 방법을 알아보세요.</block>
+  <block id="e1d2e1a634647fd631081bc4f6f8e523" category="list-text">*사례 만들기* 기능을 사용하려면 먼저 NetApp 지원 사이트 자격 증명을 BlueXP 로그인과 연결해야 합니다.<block ref="2a0d8b66ca9e99d023b48cf25f40fb12" category="inline-link-rx"></block> .</block>
+  <block id="e49aa971c20ec071f1b5bbc3c7266769" category="list-text">일련 번호가 있는 ONTAP 시스템에 대한 사례를 개설하는 경우 NSS 계정은 해당 시스템의 일련 번호와 연결되어야 합니다.</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">단계</block>
+  <block id="7fe6981833e8fe7fd89e0a99a55573da" category="list-text">BlueXP 에서 *도움말 &gt; 지원*을 선택하세요.</block>
+  <block id="08d96fdd1a845d80db99e6e1dffb8bc7" category="list-text">*리소스* 페이지에서 기술 지원 아래에 있는 사용 가능한 옵션 중 하나를 선택하세요.</block>
+  <block id="6a1b74969231967ed071d465206b15c7" category="list-text">전화로 상담원과 통화하고 싶으시면 *전화하기*를 선택하세요. netapp.com에서 전화할 수 있는 전화번호가 나열된 페이지로 이동하게 됩니다.</block>
+  <block id="d65a2a6fc9caad1867728d4382eeb989" category="list-text">NetApp 지원 전문가에게 티켓을 열려면 *사례 만들기*를 선택하세요.</block>
+  <block id="d63bf50426f4c712554faec55b30c548" category="list-text">*서비스*: 문제와 관련된 서비스를 선택하세요. 예를 들어, BlueXP 서비스 내의 워크플로나 기능에 대한 기술 지원 문제에 특화되어 있습니다.</block>
+  <block id="2e50c5f85523f0aba9ff2db10f18279c" category="list-text">*작업 환경*: 스토리지에 해당되는 경우 * Cloud Volumes ONTAP* 또는 *온프레미스*를 선택한 다음 연관된 작업 환경을 선택합니다.</block>
+  <block id="98d90e398fc56688ddc647e5f49075ec" category="paragraph">작업 환경 목록은 서비스의 상단 배너에서 선택한 BlueXP 조직(또는 계정), 프로젝트(또는 작업 공간) 및 커넥터의 범위 내에 있습니다.</block>
+  <block id="e6f29fb3c7636dc0040600dd0e84bb79" category="list-text">*사례 우선순위*: 낮음, 보통, 높음 또는 중요로 사례의 우선순위를 선택합니다.</block>
+  <block id="835eb4008e97c2a7f69bbb2725285e34" category="paragraph">이러한 우선순위에 대한 자세한 내용을 알아보려면 필드 이름 옆에 있는 정보 아이콘 위에 마우스를 올려놓으세요.</block>
+  <block id="0f7d9319c95a8be1492e74601c4b3259" category="list-text">*문제 설명*: 해당 오류 메시지나 수행한 문제 해결 단계를 포함하여 문제에 대한 자세한 설명을 제공하세요.</block>
+  <block id="002c6f26fb01affb37b8cf3cef7a1fb0" category="list-text">*추가 이메일 주소*: 이 문제를 다른 사람에게 알리려면 추가 이메일 주소를 입력하세요.</block>
+  <block id="c7f5c1a75acc58c6f004efc0ce1eba09" category="list-text">*첨부파일(선택사항)*: 최대 5개의 첨부파일을 한 번에 하나씩 업로드하세요.</block>
+  <block id="bfa80e7aaad6da353b431bff3a0e12d6" category="paragraph">첨부파일은 파일당 25MB로 제한됩니다. 다음 파일 확장자가 지원됩니다: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx, csv.</block>
+  <block id="baaf0e61add7d12cf8d12e023d5aef18" category="inline-image-macro">NetApp 지원팀에 사례를 생성할 수 있는 사례 생성 양식의 스크린샷입니다.</block>
+  <block id="509259be6d5e15d8959f705cbe0cbcc1" category="paragraph"><block ref="509259be6d5e15d8959f705cbe0cbcc1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bd965e38a0c9cf27aa1bde099308e23f" category="paragraph-title">당신이 완료한 후</block>
+  <block id="18f487556417bb6d9721a7005ae097c9" category="paragraph">지원 사례 번호가 포함된 팝업이 나타납니다. NetApp 지원 전문가가 귀하의 사례를 검토하고 곧 연락드릴 것입니다.</block>
+  <block id="0ff9b4b8684b9e03c9c1e1320935eae3" category="paragraph">지원 사례 기록을 보려면 *설정 &gt; 타임라인*을 선택하고 "지원 사례 만들기"라는 이름의 작업을 찾으세요. 가장 오른쪽에 있는 버튼을 누르면 동작을 확장하여 자세한 내용을 볼 수 있습니다.</block>
+  <block id="5c56753585e89a84941bb3a78bc681af" category="paragraph">사례를 생성하려고 할 때 다음과 같은 오류 메시지가 나타날 수 있습니다.</block>
+  <block id="a30f69ab0ec85d427a3e8835713525bd" category="paragraph">"선택한 서비스에 대해 사례를 생성할 권한이 없습니다."</block>
+  <block id="c7b7a5ae9f37fd7d24e4d641b9186fe9" category="paragraph">이 오류는 NSS 계정과 해당 계정과 연결된 기록상 회사가 BlueXP 계정 일련 번호에 대한 기록상 회사와 동일하지 않다는 것을 의미할 수 있습니다(예: 960xxxx) 또는 작업 환경 일련 번호. 다음 옵션 중 하나를 사용하여 도움을 요청할 수 있습니다.</block>
+  <block id="e01df0b4dfd95eba2c59333419e4fac6" category="list-text">제품 내 채팅을 사용하세요</block>
+  <block id="639be990cfca56ab4b63685d8bacd437" category="list-text">비기술적 사례를 제출하세요<block ref="2298f47e4dad19a3156da7ce6116d9b1" category="inline-link-rx"></block></block>
+  <block id="898e35e1a4bf4b025c3edec879439b08" category="section-title">지원 사례 관리(미리 보기)</block>
+  <block id="8b74b053fbeeff5c3b6f4991cb1d028d" category="paragraph">BlueXP 에서 직접 활성화된 지원 사례와 해결된 지원 사례를 보고 관리할 수 있습니다. 귀하의 NSS 계정 및 회사와 관련된 사례를 관리할 수 있습니다.</block>
+  <block id="394ef093ad3259b9ff0fe7406f015b83" category="paragraph">사례 관리 기능은 미리 보기로 제공됩니다. 우리는 이 경험을 더욱 개선하고 향후 릴리스에서 향상된 기능을 추가할 계획입니다. 제품 내 채팅을 이용해 피드백을 보내주세요.</block>
+  <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="paragraph">다음 사항에 유의하세요.</block>
+  <block id="5e4e7672ec2ba2b8a763da7f6714e212" category="list-text">페이지 상단의 사례 관리 대시보드는 두 가지 보기를 제공합니다.</block>
+  <block id="01c3ffea552d74a5ae390b10e71a1f26" category="list-text">왼쪽 보기는 귀하가 제공한 NSS 계정 사용자에 의해 지난 3개월 동안 열린 총 사례를 보여줍니다.</block>
+  <block id="e3b6c09a5686233f72ce1ea60a1eb088" category="list-text">오른쪽 보기는 사용자 NSS 계정을 기준으로 지난 3개월 동안 회사 수준에서 열린 총 사례를 보여줍니다.</block>
+  <block id="b19b168cc8a2b8c984465e140256b3a2" category="paragraph">표의 결과는 귀하가 선택한 보기와 관련된 사례를 반영합니다.</block>
+  <block id="56dcadeee6b0e5c47a52673f9b5a0bb3" category="list-text">관심 있는 열을 추가하거나 제거할 수 있으며, 우선순위 및 상태와 같은 열의 내용을 필터링할 수 있습니다. 다른 열은 정렬 기능만 제공합니다.</block>
+  <block id="6f936762e1223311f031685422fcd3a4" category="paragraph">자세한 내용은 아래 단계를 참조하세요.</block>
+  <block id="b14929795a61440e9b4ec9f8a4885ae3" category="list-text">사례별로 사례 메모를 업데이트하거나 아직 닫힘 또는 닫힘 보류 상태가 아닌 사례를 닫는 기능을 제공합니다.</block>
+  <block id="0a4050ac39772e9281a9aba225254bf8" category="list-text">*사례 관리*를 선택하고 메시지가 표시되면 BlueXP 에 NSS 계정을 추가합니다.</block>
+  <block id="d8ce1865cf1fe3cffd60300b4b86ad63" category="paragraph">*사례 관리* 페이지는 BlueXP 사용자 계정과 연결된 NSS 계정과 관련된 미해결 사례를 보여줍니다. 이는 *NSS 관리* 페이지 상단에 표시되는 NSS 계정과 동일합니다.</block>
+  <block id="2ae5ae78bdb2d222f15fd8e89248709c" category="list-text">필요에 따라 표에 표시되는 정보를 수정합니다.</block>
+  <block id="1d39d3ab518e1e3f16cbafb2a56e1fd9" category="list-text">*조직 사례*에서 *보기*를 선택하면 회사와 관련된 모든 사례를 볼 수 있습니다.</block>
+  <block id="059e856250b59be3069246887b74a23c" category="list-text">정확한 날짜 범위를 선택하거나 다른 기간을 선택하여 날짜 범위를 수정하세요.</block>
+  <block id="dfb3764bce2548df4e06357403f9c7d0" category="inline-image-macro">케이스 관리 페이지의 표 위에 있는 옵션의 스크린샷으로, 이를 통해 정확한 날짜 범위나 지난 7일, 30일 또는 3개월을 선택할 수 있습니다.</block>
+  <block id="0972db30d942fdb65d1732e6e84bde99" category="paragraph"><block ref="0972db30d942fdb65d1732e6e84bde99" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a1bb576be9e5a356290f231efb51b3f5" category="list-text">열의 내용을 필터링합니다.</block>
+  <block id="3753f10a59e21f58b30e3e67d416453e" category="inline-image-macro">활성 또는 닫힘과 같은 특정 상태와 일치하는 사례를 필터링할 수 있는 상태 열의 필터 옵션 스크린샷입니다.</block>
+  <block id="cb6a777dd3c6e43b0dc441d38519d219" category="paragraph"><block ref="cb6a777dd3c6e43b0dc441d38519d219" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1c6ea5ef583389e18e7d7bda70beaa71" category="inline-image-macro">표에 나타나는 플러스 아이콘</block>
+  <block id="cdf14d2156528231a5dbd12ad5c95d3f" category="list-text">표에 나타나는 열을 변경하려면 다음을 선택하세요.<block ref="b574dd55d604ddb721d869a0fc302007" category="inline-image-macro-rx" type="image"></block> 그런 다음 표시하려는 열을 선택합니다.</block>
+  <block id="370b44009f1b82d0b6b178bb80cc62fa" category="inline-image-macro">표에 표시할 수 있는 열을 보여주는 스크린샷입니다.</block>
+  <block id="e65065c4fd326b9f3a1eeb9453c30d73" category="paragraph"><block ref="e65065c4fd326b9f3a1eeb9453c30d73" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ad0ae9ea1f2e8d973a9a0f6bb169f494" category="inline-image-macro">표의 마지막 열에 나타나는 세 개의 점이 있는 아이콘</block>
+  <block id="348552521b849746260fe8d296d34c15" category="list-text">기존 사례를 선택하여 관리하세요.<block ref="566c029d89e7d5421080767a37bf443e" category="inline-image-macro-rx" type="image"></block> 그리고 사용 가능한 옵션 중 하나를 선택하세요:</block>
+  <block id="6d9dd74e7709ef802d299966f7898f6b" category="list-text">*사례 보기*: 특정 사례에 대한 전체 세부 정보를 확인하세요.</block>
+  <block id="8e6b52a532a4fbbfc98dca3ebfa5f1e6" category="list-text">*사례 메모 업데이트*: 문제에 대한 추가 세부 정보를 제공하거나 *파일 업로드*를 선택하여 최대 5개의 파일을 첨부하세요.</block>
+  <block id="bb6d5d351525342dd6b3cf4d15b6f298" category="list-text">*사건 종결*: 사건을 종결하는 이유를 자세히 입력하고 *사건 종결*을 선택하세요.</block>
+  <block id="e93217b2f709a398ce3c0fb753beb05f" category="inline-image-macro">표의 마지막 열에 있는 메뉴를 선택한 후 취할 수 있는 작업을 보여주는 스크린샷입니다.</block>
+  <block id="2ea260929e27ffcb623c8aa35689bd18" category="paragraph"><block ref="2ea260929e27ffcb623c8aa35689bd18" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="356bfec639149f88d46b9360aaf82789" category="summary">NetApp Console 사용하여 NetApp Replication 에 로그인합니다.</block>
+  <block id="1b8ced9c4e8c56b65fcb6a4dfa719297" category="doc">NetApp Replication 에 로그인</block>
+  <block id="8e917942a77709dfd28c155f42a97553" category="inline-link">로그인에 대해 자세히 알아보세요</block>
+  <block id="4c318b3352fefcf1bd1ce650cc94ca4e" category="paragraph">콘솔에 로그인하려면 NetApp 지원 사이트 자격 증명을 사용하거나 이메일과 비밀번호를 사용하여 NetApp 클라우드 로그인에 가입할 수 있습니다.<block ref="192dac3a1352f6134fa7409c0b073570" category="inline-link-rx"></block> .</block>
+  <block id="6a65fb509b9c682f9df5eb122484e2f7" category="list-text">웹 브라우저를 열고 이동하세요<block ref="d6205946f936217747639e85e1340e8f" category="inline-link-rx"></block> .</block>
+  <block id="0daac1b9cd4c3a240bf2f6b44ba178a1" category="paragraph">NetApp Console 로그인 페이지가 나타납니다.</block>
+  <block id="4a43cddfeeabba4570c14c252dec0bd1" category="list-text">콘솔에 로그인합니다.</block>
+  <block id="771a03d32a408b4653c26249844b6885" category="list-text">콘솔 왼쪽 탐색에서 *보호* &gt; *복제*를 선택합니다.</block>
+  <block id="fad0f00219691e250f806aa4e6fda7a3" category="summary">두 시스템 간에 데이터 복제를 설정한 후 NetApp Replication 에서 데이터 복제 일정과 관계를 관리할 수 있습니다.</block>
+  <block id="1d14714a562273c31a3aa99c9f0c4a3f" category="doc">NetApp Replication 에서 데이터 복제 관리</block>
+  <block id="b066406edb729146f43744df2852f1cd" category="list-text"><block ref="665f1db0ee19fa6751ad5f37fc96ca64" category="inline-link-macro-rx"></block> .</block>
+  <block id="775f5846d28de12857c9c89ae5d4a6e1" category="list-text">데이터 복제 관계의 상태를 검토하여 정상인지 확인합니다.</block>
+  <block id="384cf3526eba01b7701f7fde08ba751e" category="admonition">관계 상태가 유휴이고 미러 상태가 초기화되지 않은 경우, 정의된 일정에 따라 데이터 복제가 발생하도록 대상 시스템에서 관계를 초기화해야 합니다.  시스템 관리자나 명령줄 인터페이스(CLI)를 사용하여 관계를 초기화할 수 있습니다.  이러한 상태는 대상 시스템에 장애가 발생한 후 다시 온라인 상태가 될 때 나타날 수 있습니다.</block>
+  <block id="d869f083beb7cac7876401bafaeba676" category="list-text">볼륨 관계에 대한 작업 메뉴를 선택하고 사용 가능한 작업 중 하나를 선택합니다.</block>
+  <block id="7e237ab45b209987e5eb6464c44abac5" category="paragraph">다음 표에서는 사용 가능한 작업을 설명합니다.</block>
+  <block id="004bf6c9a40003140292e97330236c53" category="cell">행동</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">설명</block>
+  <block id="a82be0f551b8708bc08eb33cd9ded0cf" category="cell">정보</block>
+  <block id="d94a71d39d4b5957a9cb08d7b25dc8d1" category="cell">볼륨 관계에 대한 세부 정보를 표시합니다. 전송 정보, 마지막 전송 정보, 볼륨에 대한 세부 정보, 관계에 할당된 보호 정책에 대한 정보 등이 표시됩니다.</block>
+  <block id="e4c38d6d45baf080943d323dd51a2ce8" category="cell">부서지다</block>
+  <block id="f0cd8087559cf56fb0d34726dbd85d38" category="inline-link">ONTAP 설명서에서 데이터 액세스를 위한 대상 볼륨을 구성하고 소스 볼륨을 다시 활성화하는 방법을 알아보세요.</block>
+  <block id="eded94fe54d9a9c86f0d510180c58a5d" category="cell">소스 볼륨과 대상 볼륨 간의 관계를 끊고 데이터 액세스를 위해 대상 볼륨을 활성화합니다.  이 옵션은 일반적으로 데이터 손상, 실수로 삭제 또는 오프라인 상태와 같은 이벤트로 인해 소스 볼륨이 데이터를 제공할 수 없을 때 사용됩니다.<block ref="7a7ac6ccb9be4e5f4f0b719a95b68333" category="inline-link-rx"></block></block>
+  <block id="45ada1a8b02e7bf10200aedcf56d13c8" category="cell">재동기화</block>
+  <block id="56f83d4dac34839a8f3a283bafd276e8" category="paragraph">볼륨 간의 끊어진 관계를 재설정하고 정의된 일정에 따라 데이터 복제를 재개합니다.</block>
+  <block id="f43fdb6878de7980d30d532ea44e0baf" category="admonition">볼륨을 다시 동기화하면 대상 볼륨의 내용이 소스 볼륨의 내용으로 덮어쓰여집니다.</block>
+  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link">ONTAP 문서</block>
+  <block id="e990be7a16b6b4357342c71daaf2bbca" category="paragraph">대상 볼륨에서 소스 볼륨으로 데이터를 재동기화하는 역방향 재동기화 수행 방법을 알아보려면 다음으로 이동하세요.<block ref="ab01f841914c89d9d9ffbe330b1e0c0f" category="inline-link-rx"></block> .</block>
+  <block id="fb1729afce23e1bd1840f0ba32ef8e91" category="cell">역방향 재동기화</block>
+  <block id="fdd14ac0ba0eae4cebe22311577994f3" category="cell">소스 볼륨과 대상 볼륨의 역할을 바꿉니다.  원본 볼륨의 내용은 대상 볼륨의 내용으로 덮어쓰여집니다.  이 기능은 오프라인 상태가 된 소스 볼륨을 다시 활성화할 때 유용합니다.  마지막 데이터 복제와 소스 볼륨이 비활성화된 시간 사이에 원본 소스 볼륨에 기록된 모든 데이터는 보존되지 않습니다.</block>
+  <block id="67d85e3bd91876173776dc6f189ff7ac" category="cell">일정 편집</block>
+  <block id="6f95f7aca41a993373d4a1096d61c7f0" category="cell">데이터 복제에 대한 다른 일정을 선택할 수 있습니다.</block>
+  <block id="369e2ad9fb57b7fa6aea36dd7e48cf58" category="cell">최대 전송 속도 편집</block>
+  <block id="35dbbeea8ab5e735a28c3b41ed25bca0" category="cell">데이터를 전송할 수 있는 최대 속도(초당 킬로바이트)를 편집할 수 있습니다.</block>
+  <block id="06933067aafd48425d67bcb01bba5cb6" category="cell">업데이트</block>
+  <block id="16685aa35f9f2843a357407642b0d7d9" category="cell">대상 볼륨을 업데이트하기 위해 증분 전송을 시작합니다.</block>
+  <block id="f2a6c498fb90ee345d997f888fce3b18" category="cell">삭제</block>
+  <block id="d1325501ee070fd499d61b4cb3ec234d" category="cell">소스 볼륨과 대상 볼륨 간의 데이터 보호 관계를 삭제합니다. 즉, 볼륨 간에 데이터 복제가 더 이상 발생하지 않습니다.  이 작업은 데이터 액세스를 위한 대상 볼륨을 활성화하지 않습니다.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">결과</block>
+  <block id="63fb159a291d0f518004be82ab44509b" category="paragraph">작업을 선택하면 NetApp Replication 관계 또는 일정을 업데이트합니다.</block>
+  <block id="d250467f9102169f504e016ab78b6cda" category="summary">데이터 전송을 위한 일회성 데이터 복제나 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 시스템 간에 데이터를 복제할 수 있습니다.  예를 들어, 재해 복구를 위해 온프레미스 ONTAP 시스템에서 Cloud Volumes ONTAP 으로 데이터 복제를 설정할 수 있습니다.</block>
+  <block id="79d6e23629075ae4f230f2a003115b67" category="doc">NetApp Replication 에서 데이터 복제 설정</block>
+  <block id="92e912ca8707f6f34130e1b10d2d138b" category="paragraph">NetApp Replication 사용하면 데이터 전송을 위한 일회성 데이터 복제나 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 시스템 간에 데이터를 복제할 수 있습니다.  예를 들어, 재해 복구를 위해 온프레미스 ONTAP 시스템에서 Cloud Volumes ONTAP 으로 데이터 복제를 설정할 수 있습니다.</block>
+  <block id="46ebfd1e0393caa0f34b574489afb56f" category="section-title">1단계: 데이터 복제 요구 사항 검토</block>
+  <block id="3f5c98f2da3fd65fbbfa955b13a433ab" category="paragraph">데이터를 복제하기 전에 Cloud Volumes ONTAP, 온프레미스 ONTAP 클러스터 또는 Amazon FSx for ONTAP 에 대한 특정 요구 사항이 충족되는지 확인해야 합니다.</block>
+  <block id="b31df235e8aee38fd08600c353af2b52" category="list-text">시스템</block>
+  <block id="347a6d5ba577ca1fc3fbf1c018c62c3e" category="list-text">아직 수행하지 않았다면 데이터 복제 관계에서 소스와 대상에 대한 시스템을 만들어야 합니다.</block>
+  <block id="5df55e7de34e04e3fbd5d9ffd4e44939" category="inline-link">Amazon FSx for ONTAP 시스템 생성</block>
+  <block id="d34fada56fcc1f4d30c60c0ad44e815e" category="list-text"><block ref="d34fada56fcc1f4d30c60c0ad44e815e" category="inline-link-rx"></block></block>
+  <block id="e39cba49c543836a082dbf6c0bb0a5bb" category="inline-link">Cloud Volumes ONTAP 시스템 생성</block>
+  <block id="3448435dc52f8b9c3c66868becfbdf9c" category="list-text"><block ref="3448435dc52f8b9c3c66868becfbdf9c" category="inline-link-rx"></block></block>
+  <block id="6c0fb6078ec778ca2319e375a19e994b" category="inline-link">기존 Cloud Volumes ONTAP 시스템 추가</block>
+  <block id="8fdf2adbca771b61e226157cc48ae918" category="list-text"><block ref="8fdf2adbca771b61e226157cc48ae918" category="inline-link-rx"></block></block>
+  <block id="a1ebf612d281c8e7fb16bbfa253b9627" category="inline-link">ONTAP 클러스터를 찾아보세요</block>
+  <block id="c42ed38279c50e4c5755f93ea09a9661" category="list-text"><block ref="c42ed38279c50e4c5755f93ea09a9661" category="inline-link-rx"></block></block>
+  <block id="3fbe74eae84714fcfdd21edafe54f77f" category="list-text">버전 요구 사항</block>
+  <block id="5ab11c0b1a095a5aa6623bf54430fb4b" category="list-text">데이터를 복제하기 전에 소스 및 대상 볼륨이 호환되는 ONTAP 버전을 실행하고 있는지 확인해야 합니다.</block>
+  <block id="49a1e754247eba0034ec2a2b3dea46b0" category="inline-link">SnapMirror 관계에 대한 호환 ONTAP 버전 보기</block>
+  <block id="b8c6e83fa255fcfab352a5b54339fdb8" category="paragraph"><block ref="b8c6e83fa255fcfab352a5b54339fdb8" category="inline-link-rx"></block></block>
+  <block id="fe6efbb95f9a85a506ca5269c7f8ff90" category="list-text">Cloud Volumes ONTAP 에 대한 특정 요구 사항</block>
+  <block id="889d45df47a3ead91725048aa6da9442" category="list-text">인스턴스의 보안 그룹에는 필수 인바운드 및 아웃바운드 규칙이 포함되어야 합니다. 구체적으로는 ICMP 및 포트 11104와 11105에 대한 규칙이 포함됩니다.</block>
+  <block id="56a907169092bf547ac6f962beae2e1a" category="paragraph">이러한 규칙은 미리 정의된 보안 그룹에 포함됩니다.</block>
+  <block id="c08b01fe5c09939cdbabcb370734dad8" category="list-text">서로 다른 서브넷에 있는 두 개의 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 서브넷을 함께 라우팅해야 합니다(이는 기본 설정입니다).</block>
+  <block id="d5c8c6b85589a3255105df8b8a5a8e77" category="list-text">서로 다른 클라우드 공급자의 두 Cloud Volumes ONTAP 시스템 간에 데이터를 복제하려면 가상 네트워크 간에 VPN 연결이 필요합니다.</block>
+  <block id="4f98fe32c8059fcb89742310b7175e7f" category="list-text">ONTAP 클러스터에 대한 특정 요구 사항</block>
+  <block id="8c4a805dde66a7461e7760fe982d066f" category="list-text">활성화된 SnapMirror 라이선스를 설치해야 합니다.</block>
+  <block id="cb4d7a152cb523ddb41e8b55186ecaf9" category="list-text">클러스터가 사내에 있는 경우 회사 네트워크에서 클라우드의 가상 네트워크로 연결되어야 합니다.  이는 일반적으로 VPN 연결입니다.</block>
+  <block id="1fbce003d68708feb24931b9e6366f50" category="list-text">ONTAP 클러스터는 추가적인 서브넷, 포트, 방화벽 및 클러스터 요구 사항을 충족해야 합니다.</block>
+  <block id="d7bb556723e915c43fe4fd9b0f90d545" category="inline-link">ONTAP 설명서에서 클러스터 피어링에 대한 필수 구성 요소 보기</block>
+  <block id="97d76d6ad65338f9dc1e8196be488382" category="paragraph"><block ref="97d76d6ad65338f9dc1e8196be488382" category="inline-link-rx"></block></block>
+  <block id="4f473a2a941d4fd7b4a68e3cd98e934c" category="list-text">Amazon FSx for ONTAP 에 대한 특정 요구 사항</block>
+  <block id="0b2859515841917b8dcb93767366e15a" category="list-text">Cloud Volumes ONTAP 이 관계에 포함된 경우 VPC 피어링을 활성화하거나 Transit Gateway를 사용하여 VPC 간 연결을 보장합니다.</block>
+  <block id="7cdb830daf27295ef13d47b3f05f431f" category="list-text">온프레미스 ONTAP 클러스터가 관계에 포함된 경우 Direct Connect 또는 VPN 연결을 사용하여 온프레미스 네트워크와 AWS VPC 간의 연결을 보장합니다.</block>
+  <block id="94d63941f5733e2475f76dcc24cbaab4" category="section-title">2단계: 시스템 간 데이터 복제</block>
+  <block id="ab180709f75f8b8d74709444b839ccd3" category="paragraph">일회성 데이터 복제를 선택하면 클라우드로 데이터를 이동하거나 클라우드에서 데이터를 가져오는 데 도움이 되고, 반복 일정을 선택하면 재해 복구나 장기 보존에 도움이 되는 방식으로 데이터를 복제할 수 있습니다.</block>
+  <block id="c27deb5ada399336a287848889d2032c" category="list-text">탐색 메뉴에서 *저장소 &gt; 관리*를 선택합니다.</block>
+  <block id="da9b02f648ef7bfd9330c1dbfda0bf3d" category="list-text">시스템 페이지에서 소스 볼륨이 포함된 시스템을 선택하고 볼륨을 복제할 시스템으로 끌어온 다음 *복제*를 선택합니다.</block>
+  <block id="2be8439d89ba35425f3565fe4d0cc2a1" category="paragraph">나머지 단계에서는 Cloud Volumes ONTAP 또는 온프레미스 ONTAP 클러스터 간에 동기화 관계를 만드는 방법에 대한 예를 제공합니다.</block>
+  <block id="362a388c30edcb2f99cceb3fe86d98c1" category="list-text">*소스 및 대상 피어링 설정*: 이 페이지가 나타나면 클러스터 피어 관계에 대한 모든 클러스터 간 LIF를 선택합니다.</block>
+  <block id="bea31cd643e991ddda33528781bb08e5" category="paragraph">클러스터 간 네트워크는 클러스터 피어가 _페어별 풀 메시 연결_을 갖도록 구성되어야 합니다. 즉, 클러스터 피어 관계에 있는 각 클러스터 쌍이 모든 클러스터 간 LIF 간에 연결성을 가져야 합니다.</block>
+  <block id="2de4794fb8257073e92d6ea494fd0157" category="paragraph">이 페이지는 여러 LIF가 있는 ONTAP 클러스터가 소스 또는 대상인 경우 나타납니다.</block>
+  <block id="a6e88d0494a8fa6f3ae3b6727b0d269a" category="list-text">*소스 볼륨 선택*: 복제하려는 볼륨을 선택합니다.</block>
+  <block id="36e07509be5c7f032ab917fdca1c3155" category="list-text">*대상 디스크 유형 및 계층화*: 대상이 Cloud Volumes ONTAP 시스템인 경우 대상 디스크 유형을 선택하고 데이터 계층화를 활성화할지 여부를 선택합니다.</block>
+  <block id="fffe1c574a9d13338bd57b8f437e8b38" category="list-text">*대상 볼륨 이름*: 대상 볼륨 이름을 지정하고 대상 집계를 선택합니다.</block>
+  <block id="a72bddbb2c5ec4276f61eb5d4c72d29e" category="paragraph">대상이 ONTAP 클러스터인 경우 대상 스토리지 VM도 지정해야 합니다.</block>
+  <block id="70b03b0b5fddb323cd5727f0aff116da" category="list-text">*최대 전송 속도*: 데이터를 전송할 수 있는 최대 속도(초당 메가바이트)를 지정합니다.</block>
+  <block id="c4d4c57bab69ea2730de16df7ca7f541" category="paragraph">전송 속도를 제한해야 합니다.  무제한 요금은 다른 애플리케이션의 성능에 부정적인 영향을 미칠 수 있으며, 인터넷 성능에도 영향을 미칠 수 있습니다.</block>
+  <block id="dbaed6b1eccf4f28c85c3bb48e1f4cfb" category="list-text">*복제 정책*: 기본 정책을 선택하거나 *추가 정책*을 선택한 다음 고급 정책 중 하나를 선택합니다.</block>
+  <block id="43b69288e2e4056e2603dc7b20958252" category="inline-link-macro">복제 정책에 대해 알아보세요</block>
+  <block id="38ae0f8e71302f90ed2bd78cc3558be1" category="paragraph">도움이 필요하면,<block ref="aa986145ecc84d384c81421dbd7256f8" category="inline-link-macro-rx"></block> .</block>
+  <block id="94b8e29e9b4ae2edec5679fafc448461" category="inline-link-macro">백업 정책이 어떻게 작동하는지 알아보세요</block>
+  <block id="0f6c5ee2302df44c3c3978e65291c20e" category="paragraph">사용자 정의 백업(SnapVault) 정책을 선택하는 경우 해당 정책과 연관된 레이블은 소스 볼륨의 스냅샷 복사본 레이블과 일치해야 합니다.  자세한 내용은<block ref="1da422ecee672d98d1632cce950d0eeb" category="inline-link-macro-rx"></block> .</block>
+  <block id="d3b2b050bb9494cae757b48c9e54e869" category="list-text">*일정*: 일회성 사본이나 반복 일정을 선택하세요.</block>
+  <block id="eab21f14d3f6250b2de779be87b8404e" category="paragraph">여러 가지 기본 일정을 사용할 수 있습니다.  다른 일정을 원하는 경우 시스템 관리자를 사용하여 _대상_ 클러스터에 새 일정을 만들어야 합니다.</block>
+  <block id="a7727533d88ed468e2701beadd63abcb" category="list-text">*검토*: 선택 사항을 검토하고 *진행*을 선택합니다.</block>
+  <block id="b949688837512585d09125c0d7827ed8" category="paragraph">NetApp Replication 데이터 복제 프로세스를 시작합니다.  NetApp Replication 에서 볼륨 관계에 대한 세부 정보를 볼 수 있습니다.</block>
+  <block id="243263104c829e77835d632f591230d5" category="summary">NetApp 기술 지원팀에 지원 사례를 개설하려면 먼저 BlueXP 에 NetApp 지원 사이트 계정을 추가한 다음 지원을 위해 등록해야 합니다.</block>
+  <block id="42748df9eaa0be17ddc5cc1593cf57ab" category="doc">지원 등록</block>
+  <block id="ece19bab46695021f109a5e50f08bebe" category="paragraph">BlueXP 와 해당 스토리지 솔루션 및 서비스에 대한 기술 지원을 받으려면 지원 등록이 필요합니다. Cloud Volumes ONTAP 시스템의 주요 워크플로를 활성화하려면 지원 등록도 필요합니다.</block>
+  <block id="8a3d807608e632d188a288fc5f4aa7eb" category="paragraph">지원에 등록해도 클라우드 공급자 파일 서비스에 대한 NetApp 지원은 제공되지 않습니다. 클라우드 공급자 파일 서비스, 해당 인프라 또는 서비스를 사용하는 솔루션과 관련된 기술 지원에 대해서는 해당 제품의 BlueXP 설명서에서 "도움말 받기"를 참조하세요.</block>
+  <block id="0b0e252af8897fbe981ec6682d2aa33b" category="section-title">지원 등록 개요</block>
+  <block id="192054ad7601240a3e8be54cc5cc548e" category="paragraph">지원 자격을 활성화하기 위한 등록 방법은 두 가지가 있습니다.</block>
+  <block id="29360bfcdbc91d3f1514c372b4585965" category="list-text">BlueXP 계정 일련 번호를 등록합니다( BlueXP 의 지원 리소스 페이지에 있는 20자리 960xxxxxxxxx 일련 번호).</block>
+  <block id="23fdcbefa6d9cd877be7ceb7a18bb936" category="paragraph">이는 BlueXP 내의 모든 서비스에 대한 단일 지원 구독 ID 역할을 합니다. 각 BlueXP 계정 수준 지원 구독을 등록해야 합니다.</block>
+  <block id="55ff64467cd508971910145ab5d6b3b8" category="list-text">클라우드 공급업체의 마켓플레이스에서 구독과 관련된 Cloud Volumes ONTAP 일련 번호를 등록합니다(20자리 909201xxxxxxxx 일련 번호).</block>
+  <block id="67dbdeb11e22ea7def810bade59ce818" category="paragraph">이러한 일련 번호는 일반적으로 _PAYGO 일련 번호_라고 하며 Cloud Volumes ONTAP 배포 시 BlueXP 에서 생성됩니다.</block>
+  <block id="28164bf9e881ddc9e7ff74744bfce180" category="paragraph">두 가지 유형의 일련 번호를 모두 등록하면 지원 티켓 개설 및 자동 사례 생성과 같은 기능을 사용할 수 있습니다. 아래 설명된 대로 BlueXP 에 NetApp 지원 사이트(NSS) 계정을 추가하여 등록을 완료합니다.</block>
+  <block id="444b74bc81e823cc1c4c704219ad8ed3" category="section-title">NetApp 지원을 위해 BlueXP 등록</block>
+  <block id="b3bf31f8a918c712f26cdf493a908825" category="paragraph">지원을 등록하고 지원 자격을 활성화하려면 BlueXP 조직(또는 계정)의 한 사용자가 NetApp 지원 사이트 계정을 BlueXP 로그인과 연결해야 합니다. NetApp 지원에 등록하는 방법은 NetApp 지원 사이트(NSS) 계정이 있는지 여부에 따라 달라집니다.</block>
+  <block id="bf4c731c0ee7f60c8018ad8f96828dda" category="section-title">NSS 계정이 있는 기존 고객</block>
+  <block id="7e177185e7eddff33dd8f3aeb7551132" category="paragraph">NSS 계정이 있는 NetApp 고객이라면 BlueXP 통해 지원을 받기 위해 등록하기만 하면 됩니다.</block>
+  <block id="0307a12e5749f8dd930472ee78f69d2c" category="list-text">BlueXP 콘솔의 오른쪽 상단에서 설정 아이콘을 선택하고 *자격 증명*을 선택합니다.</block>
+  <block id="f19ab635e6d5f884a22ee4ce067fdbfd" category="list-text">*사용자 자격 증명*을 선택하세요.</block>
+  <block id="0c788a722f31f8f0cf36539ee04615cf" category="list-text">*NSS 자격 증명 추가*를 선택하고 NetApp 지원 사이트(NSS) 인증 프롬프트를 따릅니다.</block>
+  <block id="cfc5506589d5a4d055e721267d5f0732" category="list-text">등록 과정이 성공적으로 완료되었는지 확인하려면 도움말 아이콘을 선택하고 *지원*을 선택하세요.</block>
+  <block id="2ba7f9eae7a02f9c3ac0fc07517d1c48" category="paragraph">*리소스* 페이지에는 귀하의 BlueXP 조직이 지원을 위해 등록되어 있다는 것이 표시되어야 합니다.</block>
+  <block id="759d32287efdf88cd8ac71dccc0ecf8d" category="inline-image-macro">계정 일련번호, 녹색 확인란, 지원 등록이라는 텍스트가 표시된 스크린샷입니다.</block>
+  <block id="4c441b388bebcddf8c08fb782095b864" category="paragraph"><block ref="4c441b388bebcddf8c08fb782095b864" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c05e530d1466e986d570cfe3f92656c3" category="paragraph">다른 BlueXP 사용자는 NetApp 지원 사이트 계정을 BlueXP 로그인과 연결하지 않은 경우 이와 동일한 지원 등록 상태를 볼 수 없습니다. 하지만 그렇다고 해서 BlueXP 조직이 지원에 등록되지 않았다는 의미는 아닙니다. 조직 내 한 명의 사용자가 이러한 단계를 따랐다면 귀하의 조직은 등록된 것입니다.</block>
+  <block id="1ff5aefce774ec72a211f2b3bb10b950" category="section-title">기존 고객이지만 NSS 계정이 없습니다.</block>
+  <block id="bdd862f49d428a850400bcf2f53cdaf2" category="paragraph">기존 라이선스와 일련 번호는 있지만 NSS 계정이 없는 기존 NetApp 고객인 경우 NSS 계정을 만들고 BlueXP 로그인과 연결해야 합니다.</block>
+  <block id="5b2b7f628f804bcb786a097c7e45aa41" category="inline-link">NetApp 지원 사이트 사용자 등록 양식</block>
+  <block id="0c4a8b62da9473fbd5401273c4f85ee0" category="list-text">다음을 완료하여 NetApp 지원 사이트 계정을 만드십시오.<block ref="041bcb6d9bdf91f7d6ac92ae3a196e12" category="inline-link-rx"></block></block>
+  <block id="d61c9f72493817776f392db42ac446a2" category="list-text">일반적으로 * NetApp 고객/최종 사용자*인 적절한 사용자 수준을 선택하세요.</block>
+  <block id="5226d4ec1f4f81b740cbbd27635b441f" category="list-text">위에 사용된 BlueXP 계정 일련번호(960xxxx)를 일련번호 필드에 꼭 복사해 두세요. 이렇게 하면 계정 처리가 빨라집니다.</block>
+  <block id="0499bba105f8a891a2c671f1ba99dd34" category="list-text">다음 단계를 완료하여 새 NSS 계정을 BlueXP 로그인과 연결하세요.<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="e9b1f53d6cabb3394833a4e102eb6a69" category="section-title">NetApp 의 새로운 기능</block>
+  <block id="c20c107d0d4eef6351660f3590324232" category="paragraph">NetApp 처음 사용하시고 NSS 계정이 없으신 경우 아래의 각 단계를 따르세요.</block>
+  <block id="d889e6e7cc4c5509ab5b37f8fc894e46" category="list-text">BlueXP 콘솔의 오른쪽 상단에서 도움말 아이콘을 선택하고 *지원*을 선택하세요.</block>
+  <block id="b50f0a46135bcb7083b1f2f82032fc26" category="inline-image-macro">지원이 첫 번째 옵션으로 나열된 도움말 메뉴의 스크린샷</block>
+  <block id="e8d4092baef6680c6a35d5228ae31de2" category="paragraph"><block ref="e8d4092baef6680c6a35d5228ae31de2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2974170a8b1b5b4a2ac69aacd4c1c9c3" category="list-text">지원 등록 페이지에서 계정 ID 일련 번호를 찾으세요.</block>
+  <block id="379f9cd57d97013f3f7fdd24f692a0b1" category="paragraph"><block ref="379f9cd57d97013f3f7fdd24f692a0b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dd50e314c18933734174c1156dd9237f" category="inline-link">NetApp 지원 등록 사이트</block>
+  <block id="78f94e749b89d69dcbf3baff21ccb958" category="list-text">로 이동<block ref="e1c4be66250fd76d5c52bfe2cb7daee2" category="inline-link-rx"></block> *저는 등록된 NetApp 고객이 아닙니다*를 선택하세요.</block>
+  <block id="d4f633ef130727b2776fa7f45024ca7d" category="list-text">필수 입력란(빨간색 별표가 있는 항목)을 작성해 주세요.</block>
+  <block id="1128fc8d5ec64880f4d49337ed798d31" category="list-text">*제품군* 필드에서 *클라우드 관리자*를 선택한 다음 해당 청구 제공자를 선택하세요.</block>
+  <block id="50a1dc01b7312307c34a888071586955" category="list-text">위의 2단계에서 계정 일련번호를 복사하고 보안 검사를 완료한 다음 NetApp의 글로벌 데이터 개인정보 보호정책을 읽었는지 확인하세요.</block>
+  <block id="3a24c87c9971d2011b4df223718f84b4" category="paragraph">이 안전한 거래를 마무리하기 위해 제공된 사서함으로 이메일이 즉시 전송됩니다. 몇 분 안에 인증 이메일이 도착하지 않으면 스팸 폴더를 확인하세요.</block>
+  <block id="03413baeca1ff7222737d8ce299bd4e8" category="list-text">이메일 내에서 작업을 확인하세요.</block>
+  <block id="201080500e946070a2e4873042507c77" category="paragraph">확인을 클릭하면 귀하의 요청이 NetApp 에 ​​제출되고 NetApp 지원 사이트 계정을 만드는 것이 좋습니다.</block>
+  <block id="a2454703f88e5bf5b433ae850a87151b" category="list-text">위에 사용된 계정 일련번호(960xxxx)를 일련번호 필드에 꼭 복사해 두세요. 이렇게 하면 처리 속도가 빨라집니다.</block>
+  <block id="684375e279a289295b72a006d93e2c4c" category="paragraph">이 과정에서 NetApp 귀하에게 연락을 드릴 것입니다. 이는 신규 사용자를 대상으로 한 일회성 온보딩 과정입니다.</block>
+  <block id="5cdee814e2d9ba3490a8f16d00c65759" category="paragraph">NetApp 지원 사이트 계정이 있으면 아래 단계를 완료하여 계정을 BlueXP 로그인과 연결하세요.<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="3e616bae81890a6c8fae17c9b45af152" category="section-title">Cloud Volumes ONTAP 지원을 위한 NSS 자격 증명 연결</block>
+  <block id="0ca08a23718c0a91743dd6c0146ca353" category="paragraph">Cloud Volumes ONTAP 에 대한 다음과 같은 주요 워크플로를 활성화하려면 NetApp 지원 사이트 자격 증명을 BlueXP 조직과 연결해야 합니다.</block>
+  <block id="a0518a10626dc11fd00e2d20265ad240" category="list-text">지원을 위해 Pay-as-you-go Cloud Volumes ONTAP 시스템 등록</block>
+  <block id="321aadf78ef73521712291b7aba6411f" category="paragraph">시스템 지원을 활성화하고 NetApp 기술 지원 리소스에 액세스하려면 NSS 계정을 제공해야 합니다.</block>
+  <block id="d51b2b497db445a16b1c9583c1abbb59" category="list-text">BYOL(Bring Your Own License)을 사용할 때 Cloud Volumes ONTAP 배포</block>
+  <block id="2ebfeabed40c2270d9fa8325080a4b3e" category="paragraph">BlueXP 귀하의 라이선스 키를 업로드하고 귀하가 구매한 기간 동안 구독을 활성화하려면 귀하의 NSS 계정을 제공하는 것이 필요합니다. 여기에는 기간 갱신을 위한 자동 업데이트가 포함됩니다.</block>
+  <block id="f5135b68b75a8404803a1eb438e40c5e" category="list-text">Cloud Volumes ONTAP 소프트웨어를 최신 릴리스로 업그레이드</block>
+  <block id="c81c8e01f5d906ae1ab0c5c606f06b05" category="paragraph">NSS 자격 증명을 BlueXP 조직에 연결하는 것은 BlueXP 사용자 로그인에 연결된 NSS 계정과 다릅니다.</block>
+  <block id="8166996cb4a59c147200d89a061bb49c" category="paragraph">이러한 NSS 자격 증명은 특정 BlueXP 조직 ID와 연결됩니다. BlueXP 조직에 속한 사용자는 *지원 &gt; NSS 관리*에서 이러한 자격 증명에 액세스할 수 있습니다.</block>
+  <block id="328a2c1e7778e9edaf79d90c51409ac4" category="list-text">고객 수준 계정이 있는 경우 하나 이상의 NSS 계정을 추가할 수 있습니다.</block>
+  <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">파트너 또는 리셀러 계정이 있는 경우 하나 이상의 NSS 계정을 추가할 수 있지만 고객 수준 계정과 함께 추가할 수는 없습니다.</block>
+  <block id="c0e0b7ff0de9558404e9b77ece42948a" category="list-text">*NSS 관리 &gt; NSS 계정 추가*를 선택하세요.</block>
+  <block id="85b9386ed443776127e099931d73448a" category="list-text">메시지가 표시되면 *계속*을 선택하여 Microsoft 로그인 페이지로 이동합니다.</block>
+  <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp 지원 및 라이선싱에 특화된 인증 서비스를 위한 ID 공급자로 Microsoft Entra ID를 사용합니다.</block>
+  <block id="465ec6d5eafa3524c948c99d8bfcd306" category="list-text">로그인 페이지에서 NetApp 지원 사이트에 등록된 이메일 주소와 비밀번호를 입력하여 인증 과정을 진행합니다.</block>
+  <block id="cbc6cc3bb022583403171b447b2a962c" category="paragraph">이러한 작업을 통해 BlueXP 라이선스 다운로드, 소프트웨어 업그레이드 확인, 향후 지원 등록과 같은 작업에 NSS 계정을 사용할 수 있습니다.</block>
+  <block id="ec084bb25ed5b934c09b361069c246b2" category="list-text">NSS 계정은 고객 수준 계정이어야 합니다(게스트나 임시 계정이어서는 안 됩니다). 여러 개의 고객 수준 NSS 계정을 가질 수 있습니다.</block>
+  <block id="27387009488fe78dcc7cb7e3e432792f" category="list-text">해당 계정이 파트너 수준 계정인 경우 NSS 계정은 하나만 있을 수 있습니다. 고객 수준 NSS 계정을 추가하려고 하는데 파트너 수준 계정이 이미 있는 경우 다음과 같은 오류 메시지가 표시됩니다.</block>
+  <block id="d926847e4634e19a1aa7358becc0fa27" category="paragraph">"이 계정에는 다른 유형의 NSS 사용자가 이미 있으므로 NSS 고객 유형이 허용되지 않습니다."</block>
+  <block id="a04a3a5322782e8c18d0d64be7e1ccbc" category="paragraph">기존 고객 수준 NSS 계정이 있고 파트너 수준 계정을 추가하려는 경우에도 마찬가지입니다.</block>
+  <block id="1afe8a81cfddc9fa9559e272bb6b9496" category="list-text">로그인에 성공하면 NetApp NSS 사용자 이름을 저장합니다.</block>
+  <block id="1dcb63fd55c4d22e87cb32275b8cc808" category="inline-image-macro">세 개의 수평 점으로 구성된 아이콘</block>
+  <block id="0dfcbbbe02d3e96f8ad78782e8772587" category="paragraph">이는 귀하의 이메일에 매핑되는 시스템 생성 ID입니다. *NSS 관리* 페이지에서 이메일을 표시할 수 있습니다.<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> 메뉴.</block>
+  <block id="fc79de85a483938f72fbcb9822ec0ae3" category="list-text">로그인 자격 증명 토큰을 새로 고쳐야 하는 경우 *자격 증명 업데이트* 옵션도 있습니다.<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> 메뉴.</block>
+  <block id="b14d512a3c64fb5df16f6721b0603c63" category="paragraph">이 옵션을 사용하면 다시 로그인하라는 메시지가 표시됩니다. 이 계정의 토큰은 90일 후에 만료됩니다. 이에 대한 알림이 게시됩니다.</block>
+  <block id="26f0e5e4108f2f2fedd1858b44bccd15" category="summary">NetApp Replication 의 새로운 소식을 알아보세요.</block>
+  <block id="df214a6e34abc56f338b1b252a5e0fce" category="doc">NetApp Replication 의 새로운 기능</block>
+  <block id="a979b5c48541c64e234e1112b72bab61" category="paragraph">NetApp Replication 의 새로운 기능을 알아보세요.</block>
+  <block id="a41dd7aa7d921f9f0881a705d3679e6c" category="section-title">2025년 10월 6일</block>
+  <block id="f7ba76d5c9beab0576f118a6254843e9" category="section-title">2022년 9월 18일</block>
+  <block id="3f10ba55f7b5ee2ce092504fcea72477" category="section-title">2022년 7월 31일</block>
+  <block id="c0c4e254eb7382750d30e5d2119f551b" category="section-title">2021년 9월 2일</block>
+  <block id="8e156f2b915acbc65f2729eda74eef2c" category="section-title">2021년 5월 5일</block>
+  <block id="1473f0729c8bea54a5077a19ab764c47" category="section-title">재설계된 인터페이스</block>
+  <block id="86a27255f55f6fa957eba54a21d11659" category="paragraph">우리는 사용 편의성을 높이고 사용자 인터페이스의 현재 모양과 느낌에 맞게 복제를 재설계했습니다.</block>
+  <block id="4e3407e1bf5525b18bbc78e73274b496" category="inline-image-macro">볼륨 관계 목록을 보여주는 재설계된 복제 탭의 스크린샷입니다.</block>
+  <block id="083ac5b877ee1dbdd80a743097540008" category="paragraph"><block ref="083ac5b877ee1dbdd80a743097540008" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="279d4e41c00858c0d60b99ca08f46b19" category="sidebar">NetApp Replication 설명서</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">시작하기</block>
+  <block id="aa03d16eacb954c7af08d5001cd67507" category="sidebar">데이터 복제 설정</block>
+  <block id="bd22fcd65840658982df83d8db605b64" category="sidebar">NetApp Replication 사용</block>
+  <block id="c27a58445f6be9881526a37e46bb7d26" category="sidebar">데이터 복제 관리</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">블로그 및 커뮤니티</block>
+  <block id="cc58d3a9b2264c4fd8cb1d3f61b90bdc" category="sidebar">NetApp Data Services</block>
+  <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">NetApp 커뮤니티</block>
+  <block id="8ed9a034348ffee8e1eefbbfe5127ca1" category="sidebar">NetApp Replication 문서</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">릴리스 노트</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">새로운 소식</block>
+  <block id="d59048f21fd887ad520398ce677be586" category="sidebar">자세히 알아보기</block>
+  <block id="87531525c3b816a3a29dbbcbcd9e58b1" category="sidebar">복제 정책에 대해 알아보세요</block>
+  <block id="30926cdd94e56dd228449e15c0e4474c" category="sidebar">백업 정책에 대해 알아보세요</block>
+  <block id="0adc03eac86772ad2c75c8f140be417e" category="sidebar">지식과 지원</block>
+</blocks>

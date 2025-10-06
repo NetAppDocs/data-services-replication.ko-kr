@@ -4,7 +4,7 @@ permalink: task-replicating-data.html
 keywords: ontap, cluster, discover, manage, BlueXP, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, max transfer, maximum transfer rate, rate, transfer rate, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention, amazon fsx for ontap, fsx for ontap 
 summary: 데이터 전송을 위한 일회성 데이터 복제나 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 시스템 간에 데이터를 복제할 수 있습니다.  예를 들어, 재해 복구를 위해 온프레미스 ONTAP 시스템에서 Cloud Volumes ONTAP 으로 데이터 복제를 설정할 수 있습니다. 
 ---
-= NetApp Replication에서 데이터 복제 설정
+= NetApp Replication 에서 데이터 복제 설정
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 데이터 전송을 위한 일회성 데이터 복제나 재해 복구 
 
 
 [role="lead"]
-NetApp 복제를 사용하면 데이터 전송을 위한 일회성 데이터 복제나 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 시스템 간에 데이터를 복제할 수 있습니다.  예를 들어, 재해 복구를 위해 온프레미스 ONTAP 시스템에서 Cloud Volumes ONTAP 으로 데이터 복제를 설정할 수 있습니다.
+NetApp Replication 사용하면 데이터 전송을 위한 일회성 데이터 복제나 재해 복구 또는 장기 보존을 위한 반복 일정을 선택하여 ONTAP 시스템 간에 데이터를 복제할 수 있습니다.  예를 들어, 재해 복구를 위해 온프레미스 ONTAP 시스템에서 Cloud Volumes ONTAP 으로 데이터 복제를 설정할 수 있습니다.
 
 
 
@@ -54,7 +54,7 @@ ONTAP 클러스터에 대한 특정 요구 사항::
 +
 --
 * 활성화된 SnapMirror 라이선스를 설치해야 합니다.
-* 클러스터가 사내에 있는 경우 회사 네트워크에서 클라우드의 가상 네트워크로 연결되어야 합니다. 이는 일반적으로 VPN 연결입니다.
+* 클러스터가 사내에 있는 경우 회사 네트워크에서 클라우드의 가상 네트워크로 연결되어야 합니다.  이는 일반적으로 VPN 연결입니다.
 * ONTAP 클러스터는 추가적인 서브넷, 포트, 방화벽 및 클러스터 요구 사항을 충족해야 합니다.
 +
 https://docs.netapp.com/us-en/ontap/peering/prerequisites-cluster-peering-reference.html#connectivity-requirements["ONTAP 설명서에서 클러스터 피어링에 대한 필수 구성 요소 보기"^]
@@ -116,4 +116,4 @@ Amazon FSx for ONTAP 에 대한 특정 요구 사항::
 
 
 .결과
-NetApp 복제는 데이터 복제 프로세스를 시작합니다.  NetApp Replication에서 볼륨 관계에 대한 세부 정보를 볼 수 있습니다.
+NetApp Replication 데이터 복제 프로세스를 시작합니다.  NetApp Replication 에서 볼륨 관계에 대한 세부 정보를 볼 수 있습니다.
