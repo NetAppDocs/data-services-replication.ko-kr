@@ -37,6 +37,8 @@ sidebar:
       url: "/concept-backup-policies.html"
   - title: 지식과 지원
     entries:
+    - title: FAQ
+      url: "/faq-replication.html"
     - title: 지원 등록
       url: "/task-support-registration.html"
     - title: 도움을 받으세요

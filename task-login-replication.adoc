@@ -20,9 +20,6 @@ NetApp Console 사용하여 NetApp Replication 에 로그인합니다.
 
 .단계
 . 웹 브라우저를 열고 이동하세요 https://console.netapp.com/["NetApp Console"^] .
-+
-NetApp Console 로그인 페이지가 나타납니다.
-
 . 콘솔에 로그인합니다.
 . 콘솔 왼쪽 탐색에서 *보호* > *복제*를 선택합니다.
 

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: concept-replication.html 
-keywords: ontap, cluster, discover, manage, BlueXP, bluexp,hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, disaster recovery, DR, archive, archiving, retention, netapp replication 
+keywords: ontap, cluster, discover, manage, BlueXP, bluexp, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, disaster recovery, DR, archive, archiving, retention, netapp replication 
 summary: NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므로 가상 환경과 기존 환경 모두에서 높은 데이터 가용성과 빠른 데이터 복제를 얻을 수 있습니다.  NetApp 스토리지 시스템에 데이터를 복제하고 보조 데이터를 지속적으로 업데이트하면 데이터가 최신 상태로 유지되고 필요할 때마다 사용할 수 있습니다. 외부 복제 서버가 필요하지 않습니다. 
 ---
 = NetApp Replication 에 대해 알아보세요
@@ -23,7 +23,7 @@ NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므
 
 NetApp Replication NetApp Console 통해 액세스할 수 있습니다.
 
-NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경 전반에서 NetApp 스토리지 및 데이터 서비스를 중앙에서 관리할 수 있는 기능을 제공합니다. NetApp 데이터 서비스에 액세스하고 사용하려면 콘솔이 필요합니다. 관리 인터페이스로서, 하나의 인터페이스에서 여러 스토리지 리소스를 관리할 수 있습니다. 콘솔 관리자는 기업 내 모든 시스템의 저장소와 서비스에 대한 액세스를 제어할 수 있습니다.
+NetApp Console은 온프레미스 및 클라우드 환경 전반에서 엔터프라이즈급 수준으로 NetApp 스토리지 및 데이터 서비스의 중앙 집중식 관리를 제공합니다. NetApp 데이터 서비스에 액세스하고 이를 사용하려면 Console이 필요합니다. 관리 인터페이스로서, 하나의 인터페이스에서 많은 스토리지 리소스를 관리할 수 있도록 지원합니다. Console 관리자는 엔터프라이즈 내의 모든 시스템에 대한 스토리지 및 서비스 액세스를 제어할 수 있습니다.
 
 NetApp Console 사용하려면 라이선스나 구독이 필요하지 않으며, 스토리지 시스템이나 NetApp 데이터 서비스에 대한 연결을 보장하기 위해 클라우드에 Console 에이전트를 배포해야 할 때만 요금이 부과됩니다. 그러나 콘솔에서 액세스할 수 있는 일부 NetApp 데이터 서비스는 라이선스 기반이거나 구독 기반입니다.
 
@@ -112,7 +112,7 @@ NetApp Replication 단순, 팬아웃, 계단식 데이터 보호 구성을 지�
 
 NetApp 콘솔 에이전트 3.9.31 릴리스부터 NetApp Backup and Recovery는 SnapMirror 및 SnapVault 기술을 사용하여 서로 다른 ONTAP 시스템의 볼륨 간에 데이터를 복제할 수 있도록 지원합니다. 따라서 다른 ONTAP 시스템으로 데이터를 복제하고 동일한 데이터의 백업을 오브젝트 스토리지에 생성하려는 경우, 단일 서비스로 데이터 보호 요구 사항을 관리할 수 있도록 https://docs.netapp.com/us-en/data-services-backup-recovery/prev-ontap-protect-overview.html["NetApp Backup and Recovery"^]을 사용하는 것이 좋습니다.
 
-현재 다음 기능은 NetApp Replication 에서만 지원되며 NetApp Backup and Recovery 의 복제 기능을 사용하는 경우에는 지원되지 않습니다.
+NetApp Backup and Recovery는 NetApp Replication에서 제공되는 다음 기능을 지원하지 않습니다.
 
 * 볼륨 A에서 볼륨 B로, 그리고 볼륨 B에서 볼륨 C로 복제가 발생하는 계단식 구성은 지원되지 않습니다.
 * FSx for ONTAP 시스템에서 데이터를 복제하거나 FSx for ONTAP 시스템에서 데이터를 복제하는 기능은 지원되지 않습니다.
