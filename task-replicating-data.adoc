@@ -18,6 +18,7 @@ NetApp Replication 사용하면 데이터 전송을 위한 일회성 데이터 �
 
 
 
+[[step-1-review-data-replication-requirements]]
 == 1단계: 데이터 복제 요구 사항 검토
 
 데이터를 복제하기 전에 Cloud Volumes ONTAP, 온프레미스 ONTAP 클러스터 또는 Amazon FSx for ONTAP 에 대한 특정 요구 사항이 충족되는지 확인해야 합니다.
@@ -25,10 +26,10 @@ NetApp Replication 사용하면 데이터 전송을 위한 일회성 데이터 �
 시스템:: 아직 수행하지 않았다면 데이터 복제 관계에서 소스와 대상에 대한 시스템을 만들어야 합니다.
 +
 --
-* https://docs.netapp.com/us-en/bluexp-fsx-ontap/start/task-getting-started-fsx.html["Amazon FSx for ONTAP 시스템 생성"^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-overview-cvo.html["Cloud Volumes ONTAP 시스템 생성"^]
-* https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-adding-systems.html["기존 Cloud Volumes ONTAP 시스템 추가"^]
-* https://docs.netapp.com/us-en/bluexp-ontap-onprem/task-discovering-ontap.html["ONTAP 클러스터를 찾아보세요"^]
+* https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/task-getting-started-fsx.html["Amazon FSx for ONTAP 시스템 생성"^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/concept-overview-cvo.html["Cloud Volumes ONTAP 시스템 생성"^]
+* https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/task-adding-systems.html["기존 Cloud Volumes ONTAP 시스템 추가"^]
+* https://docs.netapp.com/us-en/storage-management-ontap-onprem/task-discovering-ontap.html["ONTAP 클러스터를 찾아보세요"^]
 
 
 --
@@ -74,6 +75,7 @@ Amazon FSx for ONTAP 에 대한 특정 요구 사항::
 
 
 
+[[step-2-replicate-data-between-systems]]
 == 2단계: 시스템 간 데이터 복제
 
 일회성 데이터 복제를 선택하면 클라우드로 데이터를 이동하거나 클라우드에서 데이터를 가져오는 데 도움이 되고, 반복 일정을 선택하면 재해 복구나 장기 보존에 도움이 되는 방식으로 데이터를 복제할 수 있습니다.

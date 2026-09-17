@@ -18,40 +18,61 @@ NetApp Replication 의 새로운 기능을 알아보세요.
 
 
 
+[[13-april-2026]]
+== 2026년 4월 13일
+
+
+
+[[replication-management-for-existing-relationships-with-fsx-for-ontap]]
+=== FSx for ONTAP을 사용한 기존 관계에 대한 복제 관리
+
+FSx for ONTAP 파일 시스템을 소스 또는 대상으로 사용하는 복제 관계 관리 기능이 이제 NetApp Workload Factory에 추가되었습니다.
+
+link:https://docs.netapp.com/us-en/data-services-replication/task-managing-replication.html["데이터 복제 관리"]
+
+
+
+[[06-october-2025]]
 == 2025년 10월 6일
 
 
 
+[[bluexp-replication-is-now-netapp-replication]]
 === BlueXP replication 이제 NetApp Replication 입니다.
 
 BlueXP replication 이름이 NetApp Replication 로 변경되었습니다.
 
 
 
+[[bluexp-is-now-netapp-console]]
 === BlueXP 는 이제 NetApp Console 입니다.
 
 강화되고 재구성된 BlueXP 기반을 기반으로 구축된 NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경에서 NetApp 스토리지와 NetApp Data Services 중앙에서 관리하여 실시간 통찰력, 더 빠른 워크플로, 간소화된 관리를 제공하며, 높은 보안성과 규정 준수를 보장합니다.
 
-변경된 내용에 대한 자세한 내용은 다음을 참조하세요.link:https://docs.netapp.com/us-en/bluexp-relnotes/index.html["NetApp Console 릴리스 노트"] .
+변경 사항에 대한 자세한 내용은 link:https://docs.netapp.com/us-en/console-relnotes/index.html["NetApp Console 릴리스 노트"]을 참조하십시오.
 
 
 
+[[18-september-2022]]
 == 2022년 9월 18일
 
 
 
+[[fsx-for-ontap-to-cloud-volumes-ontap]]
 === ONTAP 용 FSx에서 Cloud Volumes ONTAP 으로
 
 이제 Amazon FSx for ONTAP 파일 시스템에서 Cloud Volumes ONTAP 으로 데이터를 복제할 수 있습니다.
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"].
 
 
 
+[[31-july-2022]]
 == 2022년 7월 31일
 
 
 
+[[fsx-for-ontap-as-the-data-source]]
 === 데이터 소스로 ONTAP 용 FSx
 
 이제 Amazon FSx for ONTAP 파일 시스템에서 다음 대상으로 데이터를 복제할 수 있습니다.
@@ -60,28 +81,30 @@ https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["데
 * 온프레미스 ONTAP 클러스터
 
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"].
 
 
 
+[[02-september-2021]]
 == 2021년 9월 2일
 
 
 
+[[support-for-amazon-fsx-for-ontap]]
 === Amazon FSx for ONTAP 지원
 
 이제 Cloud Volumes ONTAP 시스템이나 온프레미스 ONTAP 클러스터에서 Amazon FSx for ONTAP 파일 시스템으로 데이터를 복제할 수 있습니다.
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"].
 
 
 
+[[05-may-2021]]
 == 2021년 5월 5일
 
 
 
+[[redesigned-interface]]
 === 재설계된 인터페이스
 
 우리는 사용 편의성을 높이고 사용자 인터페이스의 현재 모양과 느낌에 맞게 복제를 재설계했습니다.
-
-image:https://raw.githubusercontent.com/NetAppDocs/bluexp-replication/main/media/replication.gif["볼륨 관계 목록을 보여주는 재설계된 복제 탭의 스크린샷입니다."]

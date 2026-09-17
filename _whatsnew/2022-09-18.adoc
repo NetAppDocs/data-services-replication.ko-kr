@@ -4,8 +4,9 @@
 
 
 
+[[fsx-for-ontap-to-cloud-volumes-ontap]]
 === ONTAP 용 FSx에서 Cloud Volumes ONTAP 으로
 
 이제 Amazon FSx for ONTAP 파일 시스템에서 Cloud Volumes ONTAP 으로 데이터를 복제할 수 있습니다.
 
-https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"] .
+link:https://docs.netapp.com/us-en/data-services-replication/task-replicating-data.html["데이터 복제를 설정하는 방법을 알아보세요"].

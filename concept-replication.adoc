@@ -18,6 +18,7 @@ NetApp SnapMirror LAN이나 WAN을 통해 고속으로 데이터를 복제하므
 
 
 
+[[netapp-console]]
 == NetApp Console
 
 NetApp Replication NetApp Console 통해 액세스할 수 있습니다.
@@ -26,10 +27,11 @@ NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경 전
 
 NetApp Console 사용하려면 라이선스나 구독이 필요하지 않으며, 스토리지 시스템이나 NetApp 데이터 서비스에 대한 연결을 보장하기 위해 클라우드에 Console 에이전트를 배포해야 할 때만 요금이 부과됩니다. 그러나 콘솔에서 액세스할 수 있는 일부 NetApp 데이터 서비스는 라이선스 기반이거나 구독 기반입니다.
 
-자세히 알아보세요 https://docs.netapp.com/us-en/bluexp-setup-admin/concept-overview.html["NetApp Console"] .
+ https://docs.netapp.com/us-en/console-setup-admin/concept-overview.html["NetApp Console"]에 대해 자세히 알아보십시오.
 
 
 
+[[features]]
 == 특징
 
 * ONTAP 스토리지 시스템 간에 데이터를 복제하여 클라우드 또는 클라우드 간의 백업 및 재해 복구를 지원합니다.
@@ -39,12 +41,14 @@ NetApp Console 사용하려면 라이선스나 구독이 필요하지 않으며,
 
 
 
+[[cost]]
 == 비용
 
 NetApp NetApp Replication 사용에 대해 요금을 청구하지 않지만, 적용되는 데이터 유입 및 유출 요금에 대해서는 클라우드 공급자를 확인해야 합니다.
 
 
 
+[[supported-systems]]
 == 지원되는 시스템
 
 NetApp Replication 사용하면 다음 유형의 시스템 간에 데이터를 복제할 수 있습니다.
@@ -79,6 +83,7 @@ NetApp Replication 사용하면 다음 유형의 시스템 간에 데이터를 �
 |===
 
 
+[[how-data-replication-works]]
 == 데이터 복제 작동 방식
 
 NetApp Replication SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간 데이터 복제를 간소화합니다.  소스 볼륨과 대상 볼륨을 식별한 다음 복제 정책과 일정을 선택하기만 하면 됩니다.
@@ -90,6 +95,7 @@ NOTE: 기준선 전송에는 소스 데이터의 전체 사본이 포함됩니�
 
 
 
+[[supported-data-protection-configurations]]
 == 지원되는 데이터 보호 구성
 
 NetApp Replication 단순, 팬아웃, 계단식 데이터 보호 구성을 지원합니다.
@@ -101,9 +107,10 @@ NetApp Replication 단순, 팬아웃, 계단식 데이터 보호 구성을 지�
 
 
 
+[[replicate-data-using-netapp-backup-and-recovery]]
 == NetApp Backup and Recovery 사용하여 데이터 복제
 
-NetApp Console 에이전트 3.9.31 릴리스부터 NetApp Backup and Recovery 사용하면 SnapMirror 및 SnapVault 기술을 사용하여 별도의 ONTAP 시스템에 있는 볼륨 간에 데이터를 복제할 수 있습니다.  따라서 다른 ONTAP 시스템에 데이터를 복제하고 동일한 데이터의 백업을 개체 스토리지에 생성하려는 경우 다음을 사용할 수 있습니다. https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-ontap-backup-to-cloud.html["NetApp Backup and Recovery"^] 단일 서비스로 데이터 보호 요구 사항을 관리할 수 있습니다.
+NetApp 콘솔 에이전트 3.9.31 릴리스부터 NetApp Backup and Recovery는 SnapMirror 및 SnapVault 기술을 사용하여 서로 다른 ONTAP 시스템의 볼륨 간에 데이터를 복제할 수 있도록 지원합니다. 따라서 다른 ONTAP 시스템으로 데이터를 복제하고 동일한 데이터의 백업을 오브젝트 스토리지에 생성하려는 경우, 단일 서비스로 데이터 보호 요구 사항을 관리할 수 있도록 https://docs.netapp.com/us-en/data-services-backup-recovery/prev-ontap-protect-overview.html["NetApp Backup and Recovery"^]을 사용하는 것이 좋습니다.
 
 현재 다음 기능은 NetApp Replication 에서만 지원되며 NetApp Backup and Recovery 의 복제 기능을 사용하는 경우에는 지원되지 않습니다.
 

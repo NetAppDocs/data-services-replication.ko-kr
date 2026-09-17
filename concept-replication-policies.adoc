@@ -18,6 +18,7 @@ NetApp Replication 에서 데이터 복제를 설정할 때 복제 정책을 선
 
 
 
+[[what-replication-policies-do]]
 == 복제 정책은 무엇을 하나요?
 
 ONTAP 운영 체제는 스냅샷 복사본이라고 하는 백업을 자동으로 생성합니다.  스냅샷 복사본은 특정 시점의 파일 시스템 상태를 캡처한 볼륨의 읽기 전용 이미지입니다.
@@ -33,6 +34,7 @@ image:diagram_replication_policies.png["이 그림은 소스 볼륨의 스냅샷
 
 
 
+[[types-of-replication-policies]]
 == 복제 정책 유형
 
 복제 정책에는 세 가지 유형이 있습니다.
