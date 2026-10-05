@@ -434,4 +434,7 @@
   <block id="3f3dcd61b391fa4750b25ad012b7cfc6" category="list-text">현재 Backup and Recovery는 FSx for ONTAP 시스템과의 데이터 복제를 지원하지 않습니다.</block>
   <block id="f61da899badda17c43e8e5da775d7511" category="list-text">백업 및 복구 기능은 볼륨의 일회성 복제본 생성을 지원하지 않습니다.</block>
   <block id="2601f42c01172c0b06c8546b71254630" category="paragraph">또한, 복제 기능을 사용하면 계단식 관계를 더 쉽게 구성할 수 있습니다. 이러한 기능이 필요한 경우 NetApp 복제를 사용하십시오.</block>
+  <block id="d9522f626d1f11986cc977648b439857" category="doc">NetApp Replication 관련 법적 고지</block>
+  <block id="191ecd665d4f23df6751be84c28cd454" category="doc">NetApp Replication 관련 도움을 받으세요</block>
+  <block id="ae26b22ee1188368a5b1e99847061389" category="doc">NetApp Replication 지원을 등록하십시오.</block>
 </blocks>
